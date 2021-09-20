@@ -1,0 +1,1514 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Excavator OCTune Control Panel</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
+
+<style type="text/css">
+	
+body,html {
+    padding:0px;
+    margin:0px;
+    font-family:Segoe, "Segoe UI", "DejaVu Sans", "Trebuchet MS", Verdana, "sans-serif";
+    font-size:13px;
+}ul {
+    margin:0px;
+    padding:0px;
+}h2 {
+    padding:0px;
+    margin:0px;
+}p {
+    margin:0px;
+    padding:0px;
+}table {
+    border-collapse: collapse;
+    font-size: 0.9em;
+    font-family: sans-serif;
+    min-width: 400px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}table thead tr {
+    background: linear-gradient(90deg,#fba342,#fbc241);
+    color: #ffffff;
+    text-align: left;
+}th, td {
+    padding: 12px 15px;
+	font-weight:normal;
+}tbody tr {
+    border-bottom: 1px solid #dddddd;
+} 
+	/* tr:nth-child(even) */
+    tr.even { background-color: #252525; border-bottom:0px; }
+    /* tr:nth-child(odd) */
+    tr.odd { background-color: #2E2E2E; border-bottom:0px;  }
+	
+
+.table {
+    display:table;
+    width:100%;
+}.table-row {
+    display:table-row;
+}.table-cell {
+    display:table-cell;
+    vertical-align: middle;
+}.v-top {
+    vertical-align: top;	
+}
+
+.card-header {
+    background: linear-gradient(90deg,#fba342,#fbc241);
+    color: #ffffff;
+    text-align: left;
+}
+
+.navbar {
+    width:100%;
+    background: linear-gradient(90deg,#fba342,#fbc241);
+}
+
+.navbar-logo {
+    padding:5px;
+    vertical-align: middle;
+    width:32px;
+}
+.nav-link {
+color: #1a1a1a;
+}
+
+.navbar .nav-item .nav-link {
+    color:#FFFFFF;
+}
+
+.stats-card h3 {
+    margin:0px;
+    padding:0px;
+    padding-bottom:3px;
+    border-bottom:1px solid #eaeaea;
+    color:#353535;
+    font-size:1.2rem;
+}.stats-card h1 {
+    margin:0px;
+    padding:0px;
+    color:#1A1A1A;
+    font-size:1.0rem;
+}.stats-card svg {
+    height:45px;
+    width:45px;
+}.stats-card .col-sm-9 {
+    padding-left:5px;
+}
+
+.btn-primary { 
+  color: #fba342; 
+  background-color: #FFFFFF; 
+  border-color: #FBA342; 
+} 
+
+.btn-primary:hover, 
+.btn-primary:focus, 
+.btn-primary:active, 
+.btn-primary.active, 
+.open .dropdown-toggle.btn-primary { 
+  color: #ffffff; 
+  background-color: #fba342; 
+  border-color: #FBA342; 
+} 
+
+.btn-primary:active, 
+.btn-primary.active, 
+.open .dropdown-toggle.btn-primary { 
+  background-image: none;
+  color:#FFF;
+} 
+
+.btn-primary.disabled, 
+.btn-primary[disabled], 
+fieldset[disabled] .btn-primary, 
+.btn-primary.disabled:hover, 
+.btn-primary[disabled]:hover, 
+fieldset[disabled] .btn-primary:hover, 
+.btn-primary.disabled:focus, 
+.btn-primary[disabled]:focus, 
+fieldset[disabled] .btn-primary:focus, 
+.btn-primary.disabled:active, 
+.btn-primary[disabled]:active, 
+fieldset[disabled] .btn-primary:active, 
+.btn-primary.disabled.active, 
+.btn-primary[disabled].active, 
+fieldset[disabled] .btn-primary.active { 
+  background-color: #FFFFFF; 
+  border-color: #494949;
+  color: #494949; 
+}.btn-outline-secondary { 
+   color: #ffffff; 
+   background-color: #fba342;
+   border-color:#fba342;
+}
+.btn-outline-secondary:hover, 
+.btn-outline-secondary:focus, 
+.btn-outline-secondary:active, 
+.btn-outline-secondary.active, 
+.open .dropdown-toggle.btn-outline-secondary { 
+  color: #FFFFFF; 
+  border-color: #FFFFFF;
+  background-color: transparent;
+} 
+
+.btn-outline-secondary:active, 
+.btn-outline-secondary.active, 
+.open .dropdown-toggle.btn-outline-secondary { 
+    background-color: #fba342;
+    color:#FFF;
+    border-color: #fba342;
+}.btn-outline-secondary.disabled, 
+.btn-outline-secondary[disabled], 
+fieldset[disabled] .btn-outline-secondary, 
+.btn-outline-secondary.disabled:hover, 
+.btn-outline-secondary[disabled]:hover, 
+fieldset[disabled] .btn-outline-secondary:hover, 
+.btn-outline-secondary.disabled:focus, 
+.btn-outline-secondary[disabled]:focus, 
+fieldset[disabled] .btn-outline-secondary:focus, 
+.btn-outline-secondary.disabled:active, 
+.btn-outline-secondary[disabled]:active, 
+fieldset[disabled] .btn-outline-secondary:active, 
+.btn-outline-secondary.disabled.active, 
+.btn-outline-secondary[disabled].active, 
+fieldset[disabled] .btn-outline-secondary.active { 
+  background-color: #FFFFFF; 
+  border-color: #FFFFFF;
+  color: #FFFFFF; 
+}
+	
+</style>
+	
+</head>
+
+<body onload="start_code()">
+			
+  <nav class="navbar navbar-expand-lg navbar-light bg-light mb-3">
+	  <div class="container-fluid">
+		<a class="navbar-brand" href="#" >
+		  
+			<svg  xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+                <g fill="#FFF" fill-rule="nonzero">
+                    <path d="M15.896 0C7.13 0 0 7.176 0 16s7.13 16 15.896 16c8.767 0 15.896-7.176 15.896-16S24.663 0 15.896 0zm0 29.479C8.478 29.479 2.505 23.467 2.505 16S8.478 2.521 15.896 2.521 29.288 8.533 29.288 16s-5.974 13.479-13.392 13.479z"/>
+                    <path d="M23.314 20.897c-.578-.388-1.348-.194-1.734.388 0 .048-1.782 2.812-5.684 2.812-3.853 0-5.588-2.667-5.684-2.812a1.186 1.186 0 0 0-1.686-.388c-.578.34-.77 1.115-.433 1.697.096.145 2.553 3.976 7.803 3.976s7.708-3.782 7.804-3.976c.337-.582.193-1.358-.386-1.697zM8.719 18.521c0 .34.289.63.626.63a.64.64 0 0 0 .626-.63v-.824h.964v.824c0 .34.289.63.626.63a.64.64 0 0 0 .626-.63v-.824h.578c.386 0 .723-.34.723-.727V9.26a.743.743 0 0 0-.723-.727h-.578v-.678a.64.64 0 0 0-.626-.63.64.64 0 0 0-.626.63v.678H9.97v-.678a.64.64 0 0 0-.626-.63.64.64 0 0 0-.626.63v.727c-1.3.242-2.12 1.163-2.12 2.521 0 .873.434 1.503.964 1.842-.675.437-1.06 1.164-1.06 2.037 0 1.454.867 2.424 2.264 2.618v.921h-.048zm.722-8.388h2.264v2.134H9.441c-.77 0-1.204-.388-1.204-1.067 0-.679.434-1.067 1.204-1.067zm-1.348 4.849c0-.727.481-1.164 1.252-1.164h2.36v2.327h-2.36c-.77 0-1.252-.484-1.252-1.163zM24.278 12.994c.53-.34.963-.97.963-1.842 0-1.358-.819-2.28-2.12-2.522v-.727a.64.64 0 0 0-.625-.63.64.64 0 0 0-.627.63v.679h-.963v-.679a.64.64 0 0 0-.626-.63.64.64 0 0 0-.626.63v.679h-.579a.743.743 0 0 0-.722.727v7.66c0 .389.337.728.722.728h.579v.824c0 .34.289.63.626.63a.64.64 0 0 0 .626-.63v-.824h.963v.824c0 .34.29.63.627.63a.64.64 0 0 0 .626-.63v-.873c1.397-.193 2.264-1.163 2.264-2.618-.048-.872-.434-1.648-1.108-2.036zm-.723-1.794c0 .679-.433 1.067-1.204 1.067h-2.264v-2.134h2.264c.77 0 1.204.388 1.204 1.067zm-1.108 4.945h-2.36v-2.327h2.36c.771 0 1.253.437 1.253 1.164 0 .679-.482 1.163-1.253 1.163z"/>
+                </g>
+            </svg>
+			
+		</a>
+		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+		  <span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarNav">
+		  <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+			<li class="nav-item">
+			  <a class="nav-link" aria-current="page" href="#">Excavator OC Tune</a>
+			</li>
+		  </ul>
+		  <button class="btn btn-sm btn-outline-secondary me-2" data-bs-toggle="modal" data-bs-target="#eventViewer" type="button"><i class="bi bi-bootstrap-reboot"></i> Event Viewer</button>
+			
+		  <button class="btn btn-sm btn-outline-secondary me-2" type="button" id="reboot_rig"><i class="bi bi-bootstrap-reboot"></i> Reboot Rig</button>
+          <button class="btn btn-sm btn-outline-secondary me-2" type="button" id="restart_miner"><i class="bi bi-bootstrap-reboot"></i> Restart Miner</button>
+          <button class="btn btn-sm btn-outline-secondary me-2" type="button" id="stop_miner"><i class="bi bi-stop-circle"></i> Stop Miner</button>
+          <button class="btn btn-sm btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#systemSettings" type="button"><i class="bi bi-gear"></i> System Settings</button>
+		</div>
+	  </div>
+	</nav>
+	
+	<div class="container-fluid">
+						
+		<!-- Header -->
+		<div class="row">
+			<div class="col-md-12">
+			   <h2>Overview</h2> 
+			   <p>An overview allows you to quickly monitor the health and status of your rig quickly.</p>
+			</div>
+		</div>
+		
+		<div class="row">
+			<div class="col-sm-12">				
+				
+				<div class="alert alert-success alert-dismissible fade show mt-3" role="alert" id="system_success" style="display:none;">
+				  <div></div>
+				  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+				</div>
+				
+				<div class="alert alert-danger alert-dismissible fade show mt-3" role="alert" id="system_danger" style="display:none;">
+				  <div></div>
+				  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+				</div>
+				
+			</div>
+		</div>
+		
+		<!-- System Settings -->
+		<div class="modal fade" id="systemSettings" tabindex="-1" aria-labelledby="systemSettings" aria-hidden="true">
+		  <div class="modal-dialog">
+			<div class="modal-content">
+			  <div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLabel">System Settings</h5>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			  </div>
+			  <div class="modal-body">
+				  
+				<div class="mb-3">
+				  <label for="settings_hostname" class="form-label">Excavator Host</label>
+				  <input type="text" class="form-control" placeholder="localhost" value="localhost" id="settings_hostname">
+				</div>
+				  
+				<div class="mb-3">
+				  <label for="settings_port" class="form-label">Excavator Port</label>
+				  <input type="number" class="form-control" placeholder="18000" value="18000" id="settings_port">
+				</div>
+				  
+				 <div class="mb-3">
+				  <label for="settings_authtoken" class="form-label">Excavator Auth Token</label>
+				  <input type="text" class="form-control" placeholder="10D13730109DABFD5E8EFB31" value="10D13730109DABFD5E8EFB31" id="settings_authtoken">
+				</div>
+				
+				 <div class="mb-3">
+				  <label for="settings_voltage" class="form-label">Electricity Mains Voltage (220 UK, 120v US)</label>
+				  <input type="number" class="form-control" placeholder="220" value="220" id="settings_voltage">
+				</div>
+				  
+				<div class="mb-3">
+				  <label for="settings_cpkwh" class="form-label">Electricity Cost Per Kwh</label>
+				  <input type="number" class="form-control" placeholder="0.18" value="0.18" id="settings_cpkwh">
+				</div>
+				  
+                <div class="mb-3">
+                	<label for="settings_currency" class="form-label">Currency</label>
+                    <select class="form-select" aria-label="Default select example" id="settings_currency">
+                    <option value="$">$</option>
+                    <option value="£">£</option>
+                    <option value="€">€</option>
+                  </select>
+				</div>
+				  
+				<div class="mb-3">
+				  <label for="settings_vram_temp" class="form-label">Maximum VRAM Warning Temperature</label>
+				  <input type="number" class="form-control" placeholder="90" value="90" id="settings_vram_temp">
+				</div>
+				  
+				<div class="mb-3">
+				  <label for="settings_gpu_temp" class="form-label">Maximum GPU Warning Temperature</label>
+				  <input type="number" class="form-control" placeholder="70" value="70" id="settings_gpu_temp">
+				</div>
+				  
+				  <div class="mb-3">
+                	<label for="settings_theme" class="form-label">Theme</label>
+                    <select class="form-select" aria-label="Default select example" id="settings_theme">
+                    <option value="0">Light</option>
+                    <option value="1">Dark</option>
+                  </select>
+					  
+				</div>
+				
+				<div class="mb-3">
+					<label for="refresh-time" class="form-label">GUI Refresh time: </label>
+					<input type="range" min="1" max="5" value="2" class="slider" id="refresh-time" onchange="refresh_change()" />
+				</div>
+				 								  
+			  </div>
+			  <div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+				<button type="button" class="btn btn-primary" id="settings_save">Save changes</button>
+			  </div>
+			</div>
+		  </div>
+		</div>
+		
+		<!-- Event Viewer -->
+		<div class="modal fade" id="eventViewer" tabindex="-1" aria-labelledby="eventViewer" aria-hidden="true">
+		  <div class="modal-dialog" style="max-width:800px;">
+			<div class="modal-content">
+			  <div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLabel">Event Viewer</h5>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			  </div>
+			  <div class="modal-body">
+				  <div id="log-view-div" style="max-height:500px;overflow:auto;"></div>  					  
+			  </div>
+			  <div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+			  </div>
+			</div>
+		  </div>
+		</div>
+		
+		<!-- Fan Controller -->
+		<div class="modal fade" id="fanController" tabindex="-1" aria-labelledby="fanController" aria-hidden="true">
+		  <div class="modal-dialog">
+			<div class="modal-content">
+			  <div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLabel">Fan Controller</h5>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			  </div>
+			  <div class="modal-body">
+				  
+				  <div class="set-oc">
+						<div class="form-group mb-2">
+							<label for="selected-fan-mode">Fan mode: </label>
+							<select class="auto-tune-disable form-control" id="selected-fan-mode">
+								<option id="selected-fan-mode-0" value="0">Default/Auto</option>
+								<option id="selected-fan-mode-1" value="1">Fixed speed</option>
+								<option id="selected-fan-mode-2" value="2">Target GPU Temp</option>
+								<option id="selected-fan-mode-3" value="3">Target GPU&VRAM/HotSpot T.</option>
+								<option id="selected-fan-mode-4" value="4">Target plus decrease MCC</option>
+							</select>
+						</div>
+						<div class="form-group mb-2">
+							<label for="selected-fan-speed form-control">Fixed fan speed (%): </label>
+							<input class="auto-tune-disable form-control" type="text" id="selected-fan-speed" value="" size="2" onchange="change_fan_speed(0)" />
+						</div>
+						<div class="form-group mb-2">
+							<label for="selected-fan-temp-gpu">Target GPU Temp. (&#8451;): </label>
+							<input class="auto-tune-disable form-control" type="text" id="selected-fan-temp-gpu" value="" size="2" />
+						</div>
+						<div class="form-group mb-2">
+							<label for="selected-fan-temp-vram">Target VRAM/HotSpot Temp. (&#8451;): </label>
+							<input class="auto-tune-disable form-control" type="text" id="selected-fan-temp-vram" value="" size="2" />
+						</div>
+						<div class="form-group mb-2">
+							<label for="selected-fan-temp-vram">Max fan speed (%): </label>
+							<input class="auto-tune-disable form-control" type="text" id="selected-fan-level-max" value="" size="2" />
+						</div>
+					</div>
+				 								  
+			  </div>
+			  <div class="modal-footer">
+				<label for="selected-fan-temp-vram">Apply fan settings: </label>
+				<!--<button onclick="apply_fan(null)" class="auto-tune-disable btn btn-primary" id="opt-bt-fan">Single Device</button> -->
+				<button onclick="apply_fan_selected()" class="auto-tune-disable btn btn-primary">Selected Device(s)</button>
+				<button onclick="apply_fan_all()" class="auto-tune-disable btn btn-primary">All Devices</button>
+			  </div>
+			</div>
+		  </div>
+		</div>
+		
+		<!-- Nicehash Auto Tune -->
+		<div class="modal fade" id="autoTune" tabindex="-1" aria-labelledby="autoTune" aria-hidden="true">
+		  <div class="modal-dialog">
+			<div class="modal-content">
+			  <div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLabel">Auto Tune</h5>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			  </div>
+			  <div class="modal-body">
+				  
+				 <p>Experimental - (<span style="color:red;">Not</span> supported for 1060, 1070 and 1080)</p>
+				  
+				 <div class="set-oc">
+					<div class="form-group">
+						<label for="at-memory">Autotune for absolute memory: <br />(min: <span id="at-mem-min"></span>, max: <span id="at-mem-max"></span>) </label>
+						<input class="auto-tune-disable form-control" type="text" id="at-memory" value="" size="3" />
+						<!-- <button class="fixed auto-tune-disable" onclick="at_change_mem_clock(-50)">-50</button>
+						<button class="fixed auto-tune-disable" onclick="at_change_mem_clock(-25)">-25</button>
+						<button class="fixed auto-tune-disable" onclick="at_change_mem_clock(25)">+25</button>
+						<button class="fixed auto-tune-disable" onclick="at_change_mem_clock(50)">+50</button> -->
+					</div>
+					<div class="form-group">
+						<label for="at-core-start">Starting core clock limit (min: 210): </label>
+						<input class="auto-tune-disable form-control" type="text" id="at-core-start" value="480" size="3" />
+						<!--<button class="fixed hidden"></button>
+						 <button class="fixed auto-tune-disable" onclick="at_change_core_limit_start(-15)">-15</button>
+						<button class="fixed auto-tune-disable" onclick="at_change_core_limit_start(15)">+15</button> 
+						<button class="fixed hidden"></button>-->
+					</div>
+					<div class="form-group">
+						<label for="at-core-end">Ending core clock limit (max: 2100): </label>
+						<input class="auto-tune-disable form-control" type="text" id="at-core-end" value="1605" size="3" />
+						<!--<button class="fixed hidden"></button>
+						 <button class="fixed auto-tune-disable" onclick="at_change_core_limit_end(-15)">-15</button>
+						<button class="fixed auto-tune-disable" onclick="at_change_core_limit_end(15)">+15</button> 
+						<button class="fixed hidden"></button>-->
+					</div>
+					<div class="form-group">
+						<span style="margin-right: auto; width: 100%;">Tune for: </span>
+						<input class="auto-tune-disable form-check-input" type="radio" id="at-eff" name="at-target" value="Efficiency" checked>
+						<label for="at-eff" style="margin-right: 1rem;">Efficiency</label>
+						<input class="auto-tune-disable form-check-input" type="radio" id="at-speed" name="at-target" value="Speed">
+						<label for="at-speed">Speed</label>
+					</div>
+				</div>
+				 								  
+			  </div>
+			  <div class="modal-footer">
+				<label for="selected-fan-temp-vram">Auto Tune: </label>
+				<button onclick="auto_tune_start(null)" class="auto-tune-disable btn btn-sm btn-primary " id="at-enable">Start Single</button>
+				<button onclick="auto_tune_start_selected()" class="auto-tune-disable btn btn-sm btn-primary" id="at-enable">Start Selected</button>
+				<button id="stop_auto_tune" disabled onclick="auto_tune_finish_now()" class="btn btn-sm btn-primary">Stop</button>
+				<!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close Fan Controller</button> -->
+			  </div>
+			</div>
+		  </div>
+		</div>
+		
+		<!-- Easy OverClocking -->
+		<div class="modal fade" id="easyOverclocking" tabindex="-1" aria-labelledby="easyOverclocking" aria-hidden="true">
+		  <div class="modal-dialog">
+			<div class="modal-content">
+			  <div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLabel">Easy Overclocking</h5>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			  </div>
+			  <div class="modal-body">
+				 
+				 <p>The following GPUs are <span style="color:red;">not</span> supported for 1060, 1070 and 1080</p>
+				 <p>Power limit is automatic! Core clock limit determines power limit.</p>
+				  
+				 <br />
+				  
+				 <div class="set-oc">
+							<div class="form-group">
+								<label for="selected-core-max">Core clock limit (0 = disable limit):</label>
+								<input class="auto-tune-disable form-control" type="text" id="selected-core-max" value="210" size="3" />
+								<!-- <button class="fixed hidden"></button>
+								<button class="fixed auto-tune-disable" onclick="change_core_clock_max(-15)">-15</button>
+								<button class="fixed auto-tune-disable" onclick="change_core_clock_max(15)">+15</button>
+								<button class="fixed hidden"></button> -->
+							</div>
+							<div class="form-group">
+								<label for="selected-memory-abs">Memory clock (absolute): </label>
+								<input class="auto-tune-disable form-control" type="text" id="selected-memory-abs" value="" size="3" />
+								<!-- <button class="fixed auto-tune-disable" onclick="change_mem_clock_abs(-25)">-25</button>
+								<button class="fixed auto-tune-disable" onclick="change_mem_clock_abs(-10)">-10</button>
+								<button class="fixed auto-tune-disable" onclick="change_mem_clock_abs(10)">+10</button>
+								<button class="fixed auto-tune-disable" onclick="change_mem_clock_abs(25)">+25</button> -->
+							</div>
+							
+							<div class="form-group">
+								<input class="auto-tune-disable form-check-input" type="checkbox" id="core-uvolt" onclick="allow_uvolt(null)">
+								<label for="selected-core-volt ">Unlock core undervolt (mV): </label>
+								<input class="auto-tune-disable form-control" type="text" id="selected-core-volt" value="" size="3" disabled>
+							</div>
+						</div>
+				 								  
+			  </div>
+				
+			  <div class="modal-footer">
+				<label for="selected-fan-temp-vram">Apply Overclock: </label>
+				<button onclick="apply_oc_alt(null)" class="auto-tune-disable btn btn-sm btn-primary" id="opt-bt-oc2">Single</button>
+				<button onclick="apply_oc_selected_alt()" class="auto-tune-disable btn btn-sm btn-primary">Selected</button>
+				<button onclick="apply_oc_all_alt()" class="auto-tune-disable btn btn-sm btn-primary">All</button>
+				<!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close Fan Controller</button> -->
+			  </div>
+				
+			</div>
+		  </div>
+		</div>
+		
+		<!-- Advanced OverClocking -->
+		<div class="modal fade" id="advancedOverclocking" tabindex="-1" aria-labelledby="advancedOverclocking" aria-hidden="true">
+		  <div class="modal-dialog">
+			<div class="modal-content">
+			  <div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLabel">Advanced Overclocking</h5>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			  </div>
+			  <div class="modal-body">
+				 
+				 <div class="set-oc">
+							<div class="form-group">
+								<label for="selected-core" id="core-delta-text">Core clock delta: </label>
+								<input class="auto-tune-disable form-control" type="text" id="selected-core" value="" size="3" />
+								<!-- <button class="fixed auto-tune-disable" onclick="change_core_clock(-15)">-15</button>
+								<button class="fixed auto-tune-disable" onclick="change_core_clock(15)">+15</button> -->
+								<small id="core-delta-limits">(Min:-1000 Max:+500)</small><small id="core-max-limits" hidden>(Min:510 Max:1110)</small>
+							</div>
+							<div class="form-group">
+								<label for="selected-memory">Memory clock delta: </label>
+								<input class="auto-tune-disable form-control" type="text" id="selected-memory" value="" size="3" />
+								<!-- <button class="fixed auto-tune-disable" onclick="change_mem_clock(-25)">-25</button>
+								<button class="fixed auto-tune-disable" onclick="change_mem_clock(-10)">-10</button>
+								<button class="fixed auto-tune-disable" onclick="change_mem_clock(10)">+10</button>
+								<button class="fixed auto-tune-disable" onclick="change_mem_clock(25)">+25</button> -->
+							</div>
+							<div class="form-group">
+								<label for="selected-power">Power limit (W): </label>
+								<input class="auto-tune-disable form-control" type="text" id="selected-power" value="" size="3" />
+								<!-- <button class="fixed auto-tune-disable" onclick="change_power(-5)">-5</button>
+								<button class="fixed auto-tune-disable" onclick="change_power(-2)">-2</button>
+								<button class="fixed auto-tune-disable" onclick="change_power(2)">+2</button>
+								<button class="fixed auto-tune-disable" onclick="change_power(5)">+5</button> -->
+							</div>
+							<div class="form-group">
+								<input class="auto-tune-disable form-check-input" type="checkbox" id="core-uvolt2" onclick="allow_uvolt2(null)">
+								<label for="selected-core-volt2">Unlock max core voltage (mV): </label>
+								<input class="auto-tune-disable form-control" type="text" id="selected-core-volt2" value="" size="3" / disabled>
+							</div>
+						</div>
+				 								  
+			  </div>
+				
+			  <div class="modal-footer">
+				<label for="selected-fan-temp-vram">Apply Overclock: </label>
+				<button onclick="apply_oc(null)" class="auto-tune-disable btn btn-sm btn-primary" id="opt-bt-oc1">Single</button>
+				<button onclick="apply_oc_selected()" class="auto-tune-disable btn btn-sm btn-primary">Selected</button>
+				<button onclick="apply_oc_all()" class="auto-tune-disable btn btn-sm btn-primary">All</button>
+				<!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close Fan Controller</button> -->
+			  </div>
+				
+			</div>
+		  </div>
+		</div>
+	
+		<!-- Memory Timings -->
+		<div class="modal fade" id="memoryTimings" tabindex="-1" aria-labelledby="memoryTimings" aria-hidden="true">
+		  <div class="modal-dialog">
+			<div class="modal-content">
+			  <div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLabel">Memory Timings</h5>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			  </div>
+			  <div class="modal-body">
+				 
+				  <p>Set memory clock to delta 0 to remove any custom memory timings! <small><a href="https://github.com/nicehash/NiceHashQuickMiner/wiki/Memory-timings" target="_blank">HELP</a></small></p>
+				
+				  <div class="set-oc">
+					<div class="form-group">
+						<label for="mt-text-box3">Active memory timings: </label>
+					</div>
+					<span id="mt-text-box3"></span>
+					<div class="form-group">
+						<label for="mt-text-box2">Set custom: </label>
+					</div>
+
+					<textarea id="mt-text-box2" rows="2" style="width: 100%;" class="form-control"></textarea>
+					
+				</div>
+				  
+				 								  
+			  </div>
+				
+			  <div class="modal-footer">
+				<label>Apply timings: </label>
+				<button onclick="set_memory_timings(null)" class="auto-tune-disable btn btn-sm btn-primary" id="opt-bt-mt">Single</button>
+				<button onclick="set_memory_timings_selected()" class="auto-tune-disable btn btn-sm btn-primary">Selected</button>
+				<!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close Fan Controller</button> -->
+			  </div>
+				
+			</div>
+		  </div>
+		</div>
+		
+		<!-- OC Settings -->
+		<div class="modal fade" id="ocSettings" tabindex="-1" aria-labelledby="ocSettings" aria-hidden="true">
+		  <div class="modal-dialog">
+			<div class="modal-content">
+			  <div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLabel">OC Settings</h5>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			  </div>
+			  <div class="modal-body">
+				 	
+				  <div class="set-oc">
+							
+							<div class="form-group mb-2">
+								<label for="selected-device">Select Device/GPU: </label>
+								<select id="selected-device" onchange="pre_oc_fill()" class="auto-tune-disable form-control"></select>
+							</div>
+
+							<div class="form-group">
+								<button onclick="location.reload()" class="auto-tune-disable btn btn-sm btn-primary">Refresh page</button>
+								<button onclick="save_current_cmds()" class="auto-tune-disable btn btn-sm btn-primary" id="save-config">Save current configuration</button>
+							</div>
+							<div class="form-group button-box">
+								<h4>Reset overclock: </h4>
+								<button onclick="reset_oc(null)" class="auto-tune-disable  btn btn-sm btn-primary">Single</button>
+								<button onclick="reset_oc_selected()" class="auto-tune-disable  btn btn-sm btn-primary">Selected</button>
+								<button onclick="reset_oc_all()" class="auto-tune-disable  btn btn-sm btn-primary">All</button>
+							</div>
+							<div class="form-group button-box">
+								<h4>Reset everything (FORCE CLEAN): </h4>
+								<button onclick="force_clean_all()" class="auto-tune-disable hard-reset btn btn-sm btn-primary">For All Devices</button>
+								<button onclick="force_clean_all_restart()" class="auto-tune-disable hard-reset2 btn btn-sm btn-primary btn btn-sm btn-primary">Plus Save and Restart</button>
+							</div>
+							<div class="form-group button-box">
+								<h4>Restart: </h4>
+								<button onclick="restart_miner()" class="auto-tune-disable hard-reset btn btn-sm btn-primary">Quit/Restart Excavator</button>
+								<button onclick="restart_driver()" class="auto-tune-disable hard-reset btn btn-sm btn-primary">Restart NVIDIA Driver</button>
+								<button onclick="reboot_miner()" class="auto-tune-disable hard-reset btn btn-sm btn-primary">Reboot Rig</button>
+							</div>
+						</div>
+				 								  
+			  </div>
+				
+			  <div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+			  </div>
+				
+			</div>
+		  </div>
+		</div>
+				
+		<!-- Dashboard Stats -->
+		<div class="row">
+
+			<!-- Stat Card -->
+			<div class="col-lg-auto p-2">
+
+				<!-- Mains Voltage -->
+				<div class="stats-card card mb-3 shadow-sm p-3 bg-body rounded border-0 w-100"  style="min-width:314px;">
+				  <div class="row">
+					<div class="col-sm-3 pt-2 text-center">
+
+						<svg fill="#fba342" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96.99 122.88"><defs><style>.cls-1{fill-rule:evenodd;}</style></defs><title>power-plug</title><path class="cls-1" d="M9.11,55.54V66.28c0,21.68,9.63,32.29,31.73,35v21.64H57V101c21.88-2.1,31.73-15,31.73-36V55.54h3.16A5.12,5.12,0,0,0,97,50.43V44.52a5.12,5.12,0,0,0-5.1-5.11H76.73V8.08A8.11,8.11,0,0,0,68.64,0h0a8.11,8.11,0,0,0-8.08,8.08V39.41H36.84V8.08A8.11,8.11,0,0,0,28.76,0h0a8.1,8.1,0,0,0-8.08,8.08V39.41H5.1A5.12,5.12,0,0,0,0,44.52v5.91a5.12,5.12,0,0,0,5.1,5.11Zm42.81,9.1h4.62a1.22,1.22,0,0,1,1.21,1.22,1.16,1.16,0,0,1-.21.67l-11,18.79a1.21,1.21,0,0,1-2.25-.63,1,1,0,0,1,0-.24l1.62-11.53L40.47,73h0a1.2,1.2,0,0,1-1.21-1.18h0a1.26,1.26,0,0,1,.16-.63L50.24,52.41a1.21,1.21,0,0,1,2.25.62.81.81,0,0,1,0,.16l-.56,11.45Z"></path></svg>
+
+					</div>
+					<div class="col-sm-9">
+					  <div class="card-body p-0 m-0">
+						<small>Incoming Mains Voltage</small>
+						<h3 class="card-title p-0 m-0 mb-2 pb-2">Mains Voltage</h3>
+						<h1 class="card-text p-0 m-0"><span id="stats_voltage">0</span>V</h1>
+					  </div>
+					</div>
+				  </div>
+				</div>
+
+
+			</div>
+
+			<!-- Stat Card -->
+			<div class="col-lg-auto p-2">
+
+				<!-- Wattage -->
+				<div class="stats-card stats_wattage card mb-3 shadow-sm p-3 bg-body rounded border-0 w-100"  style="min-width:314px;">
+				  <div class="row">
+					<div class="col-sm-3 pt-2 text-center">
+
+						<svg fill="#fba342" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 115 122.88" style="enable-background:new 0 0 115 122.88" xml:space="preserve"><g><path d="M36.37,82.46c-2.88-3.29-5.86-6.71-8.22-11.74c-2.31-4.96-3.59-10.08-3.55-15.4c0.05-5.32,1.4-10.8,4.34-16.46 c0.02-0.04,0.04-0.07,0.06-0.11l0,0c3.85-6.52,9.24-10.88,15.24-13.32c5.03-2.06,10.5-2.76,15.86-2.27 c5.34,0.49,10.57,2.17,15.14,4.87c5.81,3.44,10.59,8.54,13.22,14.98c1.42,3.49,2.38,7.38,2.5,11.64c0.12,4.25-0.61,8.83-2.57,13.67 c-3,7.43-10.01,15.39-14.6,22.7c-0.25-0.05-0.51-0.06-0.77-0.02l-6.19,0.92l9.43-32.8c0.27-0.93-0.28-1.9-1.21-2.17 c-0.93-0.26-1.9,0.28-2.17,1.21L63.01,92.5l-9.36,1.39l-9.89-31.44c0.71,0.14,1.46-0.17,1.85-0.83l7.01-11.93l3.57,8.19 c0.39,0.89,1.42,1.29,2.3,0.91c0.44-0.19,0.76-0.55,0.93-0.96l0,0l3.16-7.98l3.7,9.76c0.34,0.91,1.35,1.36,2.26,1.02 c0.91-0.34,1.36-1.35,1.02-2.26l-5.27-13.9c-0.15-0.49-0.52-0.91-1.03-1.11c-0.9-0.36-1.92,0.09-2.28,0.99l-3.27,8.27l-3.26-7.48 c-0.14-0.33-0.39-0.62-0.72-0.81c-0.83-0.49-1.91-0.21-2.39,0.62l-8.52,14.5l-0.61-1.93c-0.29-0.92-1.27-1.44-2.19-1.15 c-0.92,0.29-1.44,1.27-1.15,2.19l11.27,35.85l-6.78,1.01C41.72,90.57,39.22,85.73,36.37,82.46L36.37,82.46z M14.26,18.49 c-0.79-0.74-1.21-1.73-1.25-2.73c-0.04-1,0.31-2.02,1.04-2.81c0.74-0.79,1.73-1.21,2.73-1.25c1-0.04,2.02,0.31,2.81,1.04l6.28,5.85 c0.79,0.74,1.21,1.73,1.25,2.73c0.04,1.01-0.31,2.02-1.04,2.81c-0.74,0.79-1.73,1.21-2.73,1.25c-1.01,0.04-2.02-0.31-2.81-1.04 L14.26,18.49L14.26,18.49z M3.99,61.66c-1.06,0.02-2.03-0.39-2.75-1.06C0.51,59.91,0.04,58.95,0,57.86 c-0.04-1.08,0.37-2.08,1.06-2.81c0.69-0.73,1.65-1.2,2.74-1.23l8.57-0.29c1.08-0.04,2.08,0.37,2.81,1.06 c0.73,0.69,1.2,1.65,1.23,2.74l0,0.06h0.01l-0.01,0.14c-0.02,1.01-0.42,1.92-1.06,2.61c-0.69,0.73-1.65,1.19-2.74,1.23l-0.06,0 v0.01l-0.09,0L3.99,61.66L3.99,61.66z M110.71,49.51l0.13-0.01c1.02-0.06,1.97,0.27,2.71,0.87c0.78,0.63,1.31,1.57,1.43,2.64 l0,0.04c0.01,0,0.01,0.11,0.01,0.13c0.06,1.02-0.27,1.97-0.87,2.71c-0.63,0.78-1.57,1.31-2.64,1.43l-8.53,0.9 c-1.08,0.11-2.1-0.23-2.87-0.86c-0.78-0.63-1.32-1.57-1.43-2.64c-0.11-1.07,0.23-2.1,0.86-2.87c0.63-0.78,1.57-1.32,2.64-1.43 C105,50.11,107.86,49.78,110.71,49.51L110.71,49.51L110.71,49.51z M93.81,15.37c0.61-0.9,1.51-1.46,2.49-1.66 c0.98-0.19,2.03-0.01,2.94,0.59l0.01,0.01c0.9,0.6,1.47,1.51,1.66,2.49c0.19,0.98,0.01,2.03-0.59,2.94l-4.77,7.13 c-0.6,0.9-1.51,1.47-2.5,1.67c-0.98,0.19-2.03,0.01-2.94-0.59c-0.9-0.6-1.47-1.52-1.67-2.5c-0.19-0.98-0.01-2.03,0.59-2.94 L93.81,15.37L93.81,15.37z M56.77,3.83c0.03-1.09,0.49-2.06,1.22-2.75c0.71-0.68,1.69-1.09,2.75-1.08l0-0.01 c0.09,0,0.18,0.01,0.27,0.02c0.99,0.08,1.88,0.53,2.52,1.2c0.68,0.71,1.09,1.68,1.08,2.75l0.01,0c0,0.07,0,0.14-0.01,0.2 l-0.21,8.37h0.01c0,0.09-0.01,0.18-0.02,0.27c-0.08,1-0.53,1.88-1.2,2.52c-0.72,0.68-1.69,1.09-2.75,1.08v0.01 c-0.09,0-0.18-0.01-0.27-0.02c-1-0.08-1.88-0.53-2.52-1.2c-0.68-0.72-1.09-1.69-1.08-2.75h-0.01c0-0.07,0-0.14,0.01-0.2L56.77,3.83 L56.77,3.83z M71.42,95.84l-0.63,2.95l-0.16,2.1l-25.33,3.77c-0.09-1.51-0.33-3.14-0.71-4.83L71.42,95.84L71.42,95.84z M70.58,105.49l0.02,1.27l0.03,0.44c0.07,0.83,0.08,1.67,0.03,2.5l-0.38,1.83l-23.53,3.5l-0.41-0.94l-0.92-3.76l-0.02-1.09 L70.58,105.49L70.58,105.49z M68.73,116.35c-1.22,2.09-2.9,3.72-4.82,4.83c-1.71,1-3.62,1.57-5.53,1.69 c-1.94,0.12-3.9-0.25-5.69-1.11c-1.22-0.6-2.36-1.43-3.37-2.51L68.73,116.35L68.73,116.35z"></path></g></svg>
+
+					</div>
+					<div class="col-sm-9">
+					  <div class="card-body p-0 m-0">
+						<small>Total Devices/GPUs Wattage</small>
+						<h3 class="card-title p-0 m-0 mb-2 pb-2">Wattage</h3>
+						<h1 class="card-text p-0 m-0"><span class="value">0</span>W</h1>
+					  </div>
+					</div>
+				  </div>
+				</div>
+
+
+			</div>
+
+			<!-- Stat Card -->
+			<div class="col-lg-auto p-2">
+
+
+				<!-- Amps -->
+				<div class="stats-card stats_amps card mb-3 shadow-sm p-3 bg-body rounded border-0 w-100" style="min-width:314px;">
+				  <div class="row">
+					<div class="col-sm-3 pt-2 text-center">
+
+						<svg fill="#fba342" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 78.28 122.88" style="enable-background:new 0 0 78.28 122.88" xml:space="preserve"><style type="text/css">.st0{fill-rule:evenodd;clip-rule:evenodd;}</style><g><path class="st0" d="M3.9,35.42c0.67-0.58,1.29-0.98,2.07-1.03c0.4-0.03,0.81,0.02,1.24,0.14c1.12,0.31,1.55,0.82,2.4,1.56 c4.19,3.69,8.31,7.78,12.32,12.48c2.07,1.9,2.54,3.88,0.92,5.78l-2.96,3.31c-1.5,1.5-3.41,1.42-5.49-0.08 C5.04,49.71-6.03,45.65,3.9,35.42L3.9,35.42z M3.92,53.35c0.23,6.91,1.5,11.13,3.93,15.73c3.58,4.63,6.5,9.07,8.09,13.13 c1.11,2.84,2.02,5.52,3.24,8.39l10.48,32.27h48.19L55.76,83.94c-1.69-2.72-2.05-2.06,0.17-4.13c4.51-4.23,8.38-8.83,11.81-13.62 c9.43-13.18,14.46-18.08,6.83-31.68l-5.74-10.48c-7.02-12.68-21.5-0.99-32.35,5.23c-3.17,3.94,3.99,12.37,10.3,10l8.15-3.06 l2.41,5.71C37.4,39.29,33.34,52.16,31.95,68.97c-1.99-10.31-0.31-18.56,3.82-22.75c-3.55,2.61-7.29,6.03-10.72,10.29 c-0.83,1.03-1.64,2.11-2.43,3.24c-4.18,5.58-8.4,1.72-12.4-1.42C8.08,56.65,5.9,54.85,3.92,53.35L3.92,53.35z M47.47,0.01 c0.42,0.03,0.84,0.15,1.26,0.33c2.12,0.94,4.57,5.22,5.63,7.19c0.68,1.25,2.6,4.65,4.16,7.52l-13.39,5.4 c-2.15-3.47-4.08-7.03-6.03-9.87c-1.18-1.53-1.37-3.07-0.72-4.56c0.76-1.73,2.67-3.03,4.24-4C43.72,1.35,46.25-0.1,47.47,0.01 L47.47,0.01z M31.59,8.91c0.42,0.01,0.84,0.09,1.28,0.25c1.14,0.42,1.54,0.99,2.35,1.84c1.34,1.41,2.56,3.12,3.72,4.98 c0.65,1.04,2.09,3.26,3.59,5.63c-4.62,2.08-10.85,3.2-11.06,9.13c-2.73-3.72-5.17-7.7-7.56-10.76c-1.27-1.46-1.56-2.98-1-4.51 C23.87,12.86,29,8.86,31.59,8.91L31.59,8.91z M17.3,20.88c0.4-0.03,0.81,0.02,1.24,0.14c1.12,0.31,1.55,0.82,2.4,1.56 c1.39,1.23,2.69,2.77,3.95,4.45c1.67,2.22,8.06,10.36,8.97,12.23c0.62,1.28,0.69,2.61-0.47,3.97l-3.8,3.69 c-1.5,1.5-3.41,1.42-5.49-0.08c-4.86-4.69-9.31-10.57-13.21-14.76c-1.33-1.28-1.73-2.71-1.32-4.22 C10.21,25.46,14.88,21.04,17.3,20.88L17.3,20.88z"></path></g></svg>
+
+					</div>
+					<div class="col-sm-9">
+					  <div class="card-body p-0 m-0">
+						<small>Amps consumed by Devices/GPUs.</small>
+						<h3 class="card-title p-0 m-0 mb-2 pb-2">Amperage (AMPS)</h3>
+						<h1 class="card-text p-0 m-0"><span class="value">0</span>Amps</h1>
+					  </div>
+					</div>
+				  </div>
+				</div>
+
+			</div>
+
+			<!-- Stat Card -->
+			<div class="col-lg-auto p-2">
+
+
+				<!-- Hash Rate -->
+				<div class="stats-card stats_hashrate card mb-3 shadow-sm p-3 bg-body rounded border-0 w-100"  style="min-width:314px;">
+				  <div class="row">
+					<div class="col-sm-3 pt-2 text-center">
+
+						<svg fill="#fba342" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 122.88 106.3" style="enable-background:new 0 0 122.88 106.3" xml:space="preserve"><g><path d="M58.15,52.98l28.6-18.22c0.2-0.15,0.48-0.12,0.65,0.06l2.76,2.94c0.17,0.18,0.18,0.47,0.02,0.66L68.51,63.6 c-3.08,3.31-6.37,3.96-9.02,3.1c-1.32-0.43-2.47-1.22-3.35-2.25c-0.88-1.02-1.49-2.27-1.74-3.61c-0.49-2.67,0.49-5.66,3.73-7.85 L58.15,52.98L58.15,52.98z M19.33,106.17c-3.05-2.87-5.8-6.05-8.21-9.48c-2.39-3.4-4.44-7.06-6.11-10.91 C3.38,82,2.12,78.02,1.26,73.88C0.44,69.86,0,65.7,0,61.44c0-8.32,1.66-16.25,4.65-23.49C7.77,30.43,12.33,23.66,18,18 c5.66-5.66,12.43-10.23,19.95-13.34C45.19,1.66,53.12,0,61.44,0c8.3,0,16.21,1.66,23.43,4.66c7.52,3.12,14.28,7.7,19.95,13.37 c5.68,5.68,10.26,12.46,13.38,19.97c3.01,7.24,4.68,15.16,4.68,23.44c0,4.05-0.4,8.01-1.16,11.85c-0.78,3.94-1.95,7.75-3.46,11.4 c-1.54,3.71-3.43,7.25-5.64,10.55c-2.23,3.34-4.78,6.45-7.6,9.3c-0.19,0.19-0.51,0.19-0.7,0l-3.07-3.06 c-0.06-0.02-0.12-0.06-0.17-0.11l-8.56-8.56c-0.19-0.19-0.19-0.51,0-0.7l4.49-4.49c0.19-0.19,0.51-0.19,0.7,0l6.61,6.61 c1.4-1.82,2.69-3.72,3.85-5.7c1.25-2.12,2.35-4.34,3.3-6.63c1.28-3.1,2.29-6.35,2.97-9.71c0.64-3.12,1-6.35,1.07-9.64h-9.11 c-0.27,0-0.5-0.22-0.5-0.5V55.7c0-0.27,0.22-0.5,0.5-0.5h8.76c-0.68-5.85-2.31-11.43-4.72-16.58c-2.49-5.31-5.82-10.15-9.82-14.37 l-5.86,5.86c-0.19,0.19-0.51,0.19-0.7,0l-4.49-4.49c-0.19-0.19-0.19-0.51,0-0.7l5.65-5.65c-4.44-3.57-9.45-6.46-14.87-8.5 C75.1,8.8,69.47,7.62,63.6,7.39v8.03c0,0.27-0.22,0.5-0.5,0.5h-6.36c-0.27,0-0.5-0.22-0.5-0.5V7.59 c-5.83,0.55-11.4,2.04-16.54,4.29c-5.31,2.33-10.17,5.49-14.42,9.3l5.87,5.87c0.19,0.19,0.19,0.51,0,0.7l-4.49,4.49 c-0.19,0.19-0.51,0.19-0.7,0l-5.8-5.8c-3.73,4.4-6.78,9.41-8.96,14.86C9.1,46.6,7.79,52.29,7.44,58.23h9.03 c0.27,0,0.5,0.22,0.5,0.5v6.36c0,0.27-0.22,0.5-0.5,0.5H7.5c0.22,2.94,0.68,5.8,1.35,8.58c0.72,3.01,1.7,5.92,2.91,8.72 c1.05,2.43,2.27,4.76,3.64,6.98c1.29,2.09,2.72,4.09,4.28,5.97l7.24-7.24c0.19-0.19,0.51-0.19,0.7,0l4.49,4.49 c0.19,0.19,0.19,0.51,0,0.7c-4.14,4.14-8.09,8.11-12.09,12.36C19.84,106.35,19.53,106.36,19.33,106.17L19.33,106.17z"/></g></svg>
+
+					</div>
+					<div class="col-sm-9">
+					  <div class="card-body p-0 m-0">
+						<small>Total Hash Rate for Devices/GPUs.</small>
+						<h3 class="card-title p-0 m-0 mb-2 pb-2">Hash Rate</h3>
+						<h1 class="card-text p-0 m-0"><span class="value">0</span> MH/S</h1>
+					  </div>
+					</div>
+				  </div>
+				</div>
+
+			</div>
+
+			<!-- Stat Card -->
+			<div class="col-lg-auto p-2">
+
+				<!-- GPU Temp -->
+						<div class="stats-card stats_temp card mb-3 shadow-sm p-3 bg-body rounded border-0 w-100"  style="min-width:314px;">
+						  <div class="row">
+							<div class="col-sm-3 pt-2 text-center">
+
+								<svg version="1.1" fill="#fba342" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 122.88 81.01" style="enable-background:new 0 0 122.88 81.01" xml:space="preserve"><style type="text/css">.st0{fill-rule:evenodd;clip-rule:evenodd;}</style><g><path class="st0" d="M94.15,36.75h11.69V17.58c0-1.61-0.66-3.07-1.72-4.13c-1.06-1.06-2.52-1.72-4.13-1.72 c-1.61,0-3.07,0.66-4.13,1.72c-1.06,1.06-1.72,2.52-1.72,4.13V36.75L94.15,36.75L94.15,36.75z M10.6,0c2.93,0,5.58,1.19,7.5,3.1 c1.92,1.92,3.11,4.57,3.11,7.5c0,2.93-1.19,5.58-3.11,7.5c-1.92,1.92-4.57,3.11-7.5,3.11c-2.93,0-5.58-1.19-7.5-3.11 C1.19,16.18,0,13.53,0,10.6c0-2.93,1.19-5.58,3.11-7.5C5.02,1.19,7.67,0,10.6,0L10.6,0z M14.53,6.67c-1-1-2.39-1.63-3.93-1.63 c-1.53,0-2.92,0.62-3.93,1.63c-1,1-1.63,2.39-1.63,3.93c0,1.53,0.62,2.92,1.63,3.93c1,1,2.39,1.63,3.93,1.63 c1.53,0,2.92-0.62,3.93-1.63c1-1,1.63-2.39,1.63-3.93C16.16,9.07,15.53,7.68,14.53,6.67L14.53,6.67z M48.03,69.92 c4.05,0,7.58-1.21,10.58-3.65c3.03-2.44,4.7-5.49,5.01-9.16h10.71c-0.21,3.8-1.5,7.41-3.9,10.83c-2.42,3.42-5.63,6.16-9.64,8.2 c-4.01,2.02-8.26,3.05-12.75,3.05c-8.99,0-16.17-3-21.49-9.01c-5.3-6.01-7.97-14.25-7.97-24.69v-1.9c0-6.43,1.19-12.17,3.55-17.17 c2.36-5.01,5.76-8.91,10.18-11.69c4.42-2.78,9.64-4.15,15.67-4.15c7.43,0,13.59,2.21,18.51,6.66c4.9,4.45,7.51,10.23,7.85,17.3 H63.62c-0.31-4.28-1.94-7.8-4.86-10.56c-2.9-2.75-6.51-4.13-10.79-4.13c-5.74,0-10.18,2.07-13.36,6.2 c-3.15,4.15-4.74,10.12-4.74,17.97v2.13c0,7.62,1.57,13.5,4.72,17.61C37.72,67.85,42.21,69.92,48.03,69.92L48.03,69.92z M113.06,16.93c-0.83,0-1.5-0.67-1.5-1.5c0-0.83,0.67-1.5,1.5-1.5h8.32c0.83,0,1.5,0.67,1.5,1.5c0,0.83-0.67,1.5-1.5,1.5H113.06 L113.06,16.93z M113.06,25.38c-0.83,0-1.5-0.67-1.5-1.5c0-0.83,0.67-1.5,1.5-1.5h8.32c0.83,0,1.5,0.67,1.5,1.5 c0,0.83-0.67,1.5-1.5,1.5H113.06L113.06,25.38z M113.06,33.84c-0.83,0-1.5-0.67-1.5-1.5c0-0.83,0.67-1.5,1.5-1.5h8.32 c0.83,0,1.5,0.67,1.5,1.5c0,0.83-0.67,1.5-1.5,1.5H113.06L113.06,33.84z M113.06,42.29c-0.83,0-1.5-0.67-1.5-1.5 c0-0.83,0.67-1.5,1.5-1.5h8.32c0.83,0,1.5,0.67,1.5,1.5c0,0.83-0.67,1.5-1.5,1.5H113.06L113.06,42.29z M113.06,50.74 c-0.83,0-1.5-0.67-1.5-1.5c0-0.83,0.67-1.5,1.5-1.5h8.32c0.83,0,1.5,0.67,1.5,1.5c0,0.83-0.67,1.5-1.5,1.5H113.06L113.06,50.74z M108.84,52.53c4.04,2.83,6.68,7.52,6.68,12.83c0,8.65-7.01,15.65-15.65,15.65c-8.65,0-15.65-7.01-15.65-15.65 c0-5.42,2.76-10.2,6.95-13.01V17.58c0-2.43,0.99-4.64,2.6-6.24c1.6-1.6,3.81-2.6,6.24-2.6c2.43,0,4.64,0.99,6.25,2.6 c1.6,1.6,2.6,3.81,2.6,6.24V52.53L108.84,52.53L108.84,52.53z"/></g></svg>
+
+							</div>
+							<div class="col-sm-9">
+							  <div class="card-body p-0 m-0">
+								<small>Highest GPU and VRAM Temp.</small>
+								<h3 class="card-title p-0 m-0 mb-2 pb-2">GPU / VRAM Temp</h3>
+								<h1 class="card-text p-0 m-0">°<span class="gpu">0</span> / °<span class="vram">0</span></h1>
+							  </div>
+							</div>
+						  </div>
+						</div>
+
+
+			</div>
+
+			<!-- Stat Card -->
+			<div class="col-lg-auto p-2">
+
+
+				<!-- Hardware Errors -->
+				<div class="stats-card stats_hwerrors card mb-3 shadow-sm p-3 bg-body rounded border-0 w-100"  style="min-width:314px;">
+				  <div class="row">
+					<div class="col-sm-3 pt-2 text-center">
+
+						<svg version="1.1" fill="#fba342" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 122.88 122.881" enable-background="new 0 0 122.88 122.881" xml:space="preserve"><g><path d="M57.454,89.262c-0.212-0.51-0.319-1.059-0.319-1.645c0-0.588,0.106-1.137,0.319-1.646c0.21-0.506,0.526-0.969,0.945-1.389 h0L58.4,84.58h0c0.419-0.42,0.883-0.734,1.39-0.945c0.51-0.213,1.06-0.318,1.646-0.318c0.591,0,1.142,0.105,1.652,0.318 c0.5,0.207,0.957,0.516,1.371,0.924c0.008,0.008,0.016,0.014,0.022,0.021c0.419,0.418,0.734,0.883,0.945,1.391 c0.213,0.51,0.318,1.059,0.318,1.646c0,0.586-0.105,1.135-0.318,1.645c-0.211,0.506-0.525,0.971-0.945,1.391 c-0.421,0.42-0.888,0.74-1.398,0.953c-0.509,0.213-1.059,0.32-1.647,0.32c-0.586,0-1.134-0.107-1.642-0.32 c-0.498-0.209-0.957-0.52-1.371-0.93c-0.008-0.008-0.016-0.016-0.024-0.023C57.98,90.234,57.665,89.77,57.454,89.262L57.454,89.262 z M61.44,5.165c-3.894,0-7.67,0.366-11.326,1.098c-3.661,0.732-7.193,1.825-10.592,3.277l0.001,0.004 c-3.455,1.486-6.672,3.224-9.646,5.22c-2.98,2-5.744,4.271-8.284,6.821l-0.01,0.01h0c-2.55,2.541-4.821,5.303-6.821,8.284 c-1.996,2.974-3.733,6.191-5.22,9.646c-0.018,0.042-0.037,0.082-0.056,0.123c-1.426,3.361-2.501,6.852-3.225,10.468 c-0.732,3.656-1.098,7.432-1.098,11.325c0,3.895,0.366,7.67,1.098,11.326c0.732,3.66,1.825,7.193,3.277,10.592l0.003-0.002 c1.486,3.455,3.224,6.672,5.22,9.646c2,2.98,4.271,5.744,6.821,8.283l0.01,0.01l0,0c2.54,2.551,5.303,4.822,8.284,6.822 c2.974,1.994,6.191,3.732,9.646,5.219c0.042,0.018,0.083,0.037,0.123,0.057c3.361,1.426,6.852,2.5,10.468,3.225 c3.656,0.732,7.432,1.098,11.326,1.098s7.67-0.365,11.325-1.098c3.661-0.732,7.192-1.826,10.593-3.277l-0.002-0.004 c3.455-1.486,6.672-3.225,9.646-5.219c2.979-2,5.743-4.271,8.283-6.822l0.01-0.01l0,0c2.549-2.539,4.821-5.303,6.82-8.283 c1.996-2.975,3.734-6.191,5.221-9.646c0.018-0.041,0.036-0.082,0.056-0.121c1.427-3.361,2.501-6.854,3.225-10.469 c0.732-3.656,1.099-7.432,1.099-11.326c0-3.893-0.366-7.669-1.099-11.325c-0.732-3.661-1.825-7.192-3.277-10.592l-0.003,0.001 c-1.486-3.455-3.225-6.672-5.221-9.646c-1.999-2.98-4.271-5.743-6.82-8.284l-0.01-0.01l0,0c-2.54-2.549-5.304-4.821-8.283-6.821 c-2.975-1.996-6.191-3.734-9.646-5.22c-0.041-0.018-0.082-0.037-0.123-0.056c-3.361-1.426-6.852-2.501-10.468-3.225 C69.11,5.531,65.334,5.165,61.44,5.165L61.44,5.165z M49.106,1.199C53.098,0.4,57.21,0,61.44,0c4.229,0,8.342,0.4,12.334,1.199 c3.936,0.788,7.764,1.971,11.48,3.549c0.047,0.017,0.093,0.035,0.14,0.055c3.705,1.594,7.198,3.486,10.473,5.684 c3.265,2.191,6.286,4.674,9.061,7.457l0.01,0.01c2.782,2.774,5.266,5.796,7.456,9.061c2.198,3.274,4.09,6.767,5.684,10.473 l-0.003,0.001l0.003,0.009c1.606,3.757,2.808,7.628,3.604,11.609c0.799,3.992,1.198,8.104,1.198,12.334 c0,4.23-0.399,8.344-1.198,12.334c-0.788,3.936-1.971,7.764-3.549,11.48c-0.017,0.047-0.035,0.094-0.056,0.141 c-1.594,3.705-3.485,7.197-5.684,10.473c-2.19,3.264-4.674,6.285-7.456,9.061l-0.01,0.01c-2.774,2.783-5.796,5.266-9.061,7.457 c-3.274,2.197-6.768,4.09-10.473,5.684l-0.002-0.004l-0.009,0.004c-3.757,1.605-7.628,2.807-11.609,3.604 c-3.992,0.799-8.104,1.199-12.334,1.199c-4.23,0-8.343-0.4-12.334-1.199c-3.935-0.789-7.763-1.971-11.48-3.549 c-0.047-0.018-0.093-0.035-0.14-0.055c-3.706-1.594-7.198-3.486-10.473-5.684c-3.264-2.191-6.286-4.674-9.06-7.457l-0.01-0.01 c-2.783-2.775-5.266-5.797-7.457-9.061c-2.198-3.275-4.09-6.768-5.684-10.473l0.004-0.002l-0.004-0.01 c-1.605-3.756-2.807-7.627-3.604-11.609C0.4,69.783,0,65.67,0,61.439c0-4.229,0.4-8.342,1.199-12.334 c0.788-3.935,1.971-7.763,3.548-11.479c0.017-0.047,0.036-0.093,0.055-0.14c1.594-3.706,3.486-7.199,5.684-10.473 c2.19-3.264,4.674-6.286,7.457-9.061l0.01-0.01c2.774-2.783,5.796-5.266,9.06-7.457c3.275-2.198,6.768-4.09,10.473-5.684 l0.002,0.003l0.008-0.003C41.254,3.197,45.125,1.996,49.106,1.199L49.106,1.199z M64.107,77.82 c-0.005,1.012-0.717,1.65-1.627,1.924c-0.331,0.1-0.687,0.148-1.04,0.148s-0.709-0.049-1.04-0.148 c-0.91-0.273-1.622-0.912-1.627-1.924l-3.417-44.679c-0.001-0.01-0.001-0.021-0.001-0.031h-0.001c0-1.094,1.63-1.758,3.715-2.018 c0.75-0.093,1.561-0.14,2.371-0.14s1.621,0.047,2.37,0.14c2.086,0.26,3.716,0.924,3.716,2.018c0,0.018-0.002,0.036-0.004,0.053 L64.107,77.82L64.107,77.82z"/></g></svg>
+
+					</div>
+					<div class="col-sm-9">
+					  <div class="card-body p-0 m-0">
+						<small>Hardware Errors, none is perfect!</small>
+						<h3 class="card-title p-0 m-0 mb-2 pb-2">Hardware Errors</h3>
+						<h1 class="card-text p-0 m-0"><span class="value">0</span></h1>
+					  </div>
+					</div>
+				  </div>
+				</div>
+
+			</div>
+
+			<!-- Stat Card -->
+			<div class="col-lg-auto p-2">
+
+
+				<!--System Uptime -->
+				<div class="stats-card stats_uptime card mb-3 shadow-sm p-3 bg-body rounded border-0 w-100"  style="min-width:314px;">
+				  <div class="row">
+					<div class="col-sm-3 pt-2 text-center">
+
+						<svg version="1.1" fill="#fba342" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 122.88 99.54" style="enable-background:new 0 0 122.88 99.54" xml:space="preserve"><style type="text/css"><![CDATA[
+		.st0{fill-rule:evenodd;clip-rule:evenodd;}
+		]]></style><g><path class="st0" d="M26.98,2.64c14.9,0,26.98,12.08,26.98,26.98c0,14.9-12.08,26.98-26.98,26.98S0,44.52,0,29.62 C0,14.72,12.08,2.64,26.98,2.64L26.98,2.64z M73.12,0c6.73,0,13.16,1.34,19.03,3.77c6.09,2.52,11.57,6.22,16.16,10.81l0,0 c4.58,4.58,8.28,10.06,10.8,16.17c2.43,5.87,3.77,12.3,3.77,19.02c0,6.73-1.34,13.16-3.77,19.03c-2.52,6.09-6.22,11.57-10.81,16.16 l0,0c-4.58,4.58-10.06,8.28-16.17,10.8c-5.87,2.43-12.3,3.77-19.02,3.77c-6.73,0-13.16-1.34-19.03-3.77 c-6.09-2.52-11.57-6.22-16.15-10.8l-0.01-0.01c-4.59-4.59-8.28-10.07-10.8-16.15c-0.78-1.89-1.45-3.83-2-5.82 c1.04,0.1,2.1,0.15,3.17,0.15c2.03,0,4.01-0.18,5.94-0.53c0.32,0.96,0.67,1.91,1.05,2.84c2.07,5,5.11,9.5,8.89,13.28 c3.78,3.78,8.29,6.82,13.28,8.89c4.81,1.99,10.1,3.1,15.66,3.1s10.84-1.1,15.66-3.1c5-2.07,9.5-5.11,13.28-8.89 c3.78-3.78,6.82-8.29,8.89-13.28c1.99-4.81,3.1-10.1,3.1-15.66s-1.1-10.84-3.1-15.66c-2.07-5-5.11-9.5-8.89-13.28 s-8.29-6.82-13.28-8.89c-4.81-1.99-10.1-3.1-15.66-3.1s-10.84,1.1-15.66,3.1c-0.43,0.18-0.86,0.37-1.28,0.56 c-1.64-2.58-3.62-4.92-5.89-6.95c1.24-0.64,2.51-1.23,3.8-1.77C59.97,1.34,66.39,0,73.12,0L73.12,0L73.12,0z M67.41,26.11 c0-1.22,0.5-2.32,1.29-3.12c0.8-0.8,1.9-1.29,3.12-1.29c1.22,0,2.32,0.49,3.12,1.29c0.8,0.8,1.29,1.9,1.29,3.12v23.22l17.35,10.29 c1.04,0.62,1.74,1.61,2.02,2.7c0.28,1.09,0.15,2.29-0.47,3.33v0.01l0,0c-0.62,1.04-1.61,1.74-2.7,2.02s-2.29,0.15-3.33-0.47h-0.01 l0,0L69.68,55.7c-0.67-0.37-1.22-0.91-1.62-1.55c-0.41-0.67-0.65-1.46-0.65-2.3V26.11L67.41,26.11L67.41,26.11z M26.98,13.72 l14.48,17.9h-8.99v9.52H21.49v-9.52H12.5L26.98,13.72L26.98,13.72z"/></g></svg>
+
+					</div>
+					<div class="col-sm-9">
+					  <div class="card-body p-0 m-0">
+						<small>Excavator total uptime. HH:MM:SS</small>
+						<h3 class="card-title p-0 m-0 mb-2 pb-2">Excavator Uptime</h3>
+						<h1 class="card-text p-0 m-0"><span class="value">00:00:00</span></h1>
+					  </div>
+					</div>
+				  </div>
+				</div>
+
+			</div>
+
+			<!-- Stat Card -->
+			<div class="col-lg-auto p-2">
+
+				<!--Memory Usage -->
+				<div class="stats-card stats_memory card mb-3 shadow-sm p-3 bg-body rounded border-0 w-100"  style="min-width:314px;">
+				  <div class="row">
+					<div class="col-sm-3 pt-2 text-center">
+
+						<svg version="1.1" fill="#fba342" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 122.88 99.54" style="enable-background:new 0 0 122.88 99.54" xml:space="preserve"><style type="text/css"><![CDATA[
+		.st0{fill-rule:evenodd;clip-rule:evenodd;}
+		]]></style><g><path class="st0" d="M26.98,2.64c14.9,0,26.98,12.08,26.98,26.98c0,14.9-12.08,26.98-26.98,26.98S0,44.52,0,29.62 C0,14.72,12.08,2.64,26.98,2.64L26.98,2.64z M73.12,0c6.73,0,13.16,1.34,19.03,3.77c6.09,2.52,11.57,6.22,16.16,10.81l0,0 c4.58,4.58,8.28,10.06,10.8,16.17c2.43,5.87,3.77,12.3,3.77,19.02c0,6.73-1.34,13.16-3.77,19.03c-2.52,6.09-6.22,11.57-10.81,16.16 l0,0c-4.58,4.58-10.06,8.28-16.17,10.8c-5.87,2.43-12.3,3.77-19.02,3.77c-6.73,0-13.16-1.34-19.03-3.77 c-6.09-2.52-11.57-6.22-16.15-10.8l-0.01-0.01c-4.59-4.59-8.28-10.07-10.8-16.15c-0.78-1.89-1.45-3.83-2-5.82 c1.04,0.1,2.1,0.15,3.17,0.15c2.03,0,4.01-0.18,5.94-0.53c0.32,0.96,0.67,1.91,1.05,2.84c2.07,5,5.11,9.5,8.89,13.28 c3.78,3.78,8.29,6.82,13.28,8.89c4.81,1.99,10.1,3.1,15.66,3.1s10.84-1.1,15.66-3.1c5-2.07,9.5-5.11,13.28-8.89 c3.78-3.78,6.82-8.29,8.89-13.28c1.99-4.81,3.1-10.1,3.1-15.66s-1.1-10.84-3.1-15.66c-2.07-5-5.11-9.5-8.89-13.28 s-8.29-6.82-13.28-8.89c-4.81-1.99-10.1-3.1-15.66-3.1s-10.84,1.1-15.66,3.1c-0.43,0.18-0.86,0.37-1.28,0.56 c-1.64-2.58-3.62-4.92-5.89-6.95c1.24-0.64,2.51-1.23,3.8-1.77C59.97,1.34,66.39,0,73.12,0L73.12,0L73.12,0z M67.41,26.11 c0-1.22,0.5-2.32,1.29-3.12c0.8-0.8,1.9-1.29,3.12-1.29c1.22,0,2.32,0.49,3.12,1.29c0.8,0.8,1.29,1.9,1.29,3.12v23.22l17.35,10.29 c1.04,0.62,1.74,1.61,2.02,2.7c0.28,1.09,0.15,2.29-0.47,3.33v0.01l0,0c-0.62,1.04-1.61,1.74-2.7,2.02s-2.29,0.15-3.33-0.47h-0.01 l0,0L69.68,55.7c-0.67-0.37-1.22-0.91-1.62-1.55c-0.41-0.67-0.65-1.46-0.65-2.3V26.11L67.41,26.11L67.41,26.11z M26.98,13.72 l14.48,17.9h-8.99v9.52H21.49v-9.52H12.5L26.98,13.72L26.98,13.72z"/></g></svg>
+
+					</div>
+					<div class="col-sm-9">
+					  <div class="card-body p-0 m-0">
+						<small>Memory consumed by Excavator.</small>
+						<h3 class="card-title p-0 m-0 mb-2 pb-2">Memory Usage</h3>
+						<h1 class="card-text p-0 m-0"><span class="value_ram_load">0</span>% / <span class="value_ram_usage">0</span>MB</h1>
+					  </div>
+					</div>
+				  </div>
+				</div>
+
+
+			</div>
+
+			<!-- Stat Card -->
+			<div class="col-lg-auto p-2">
+
+
+				<!-- CPU Load / Usage -->
+				<div class="stats-card stats_cpu card mb-3 shadow-sm p-3 bg-body rounded border-0 w-100"  style="min-width:314px;">
+				  <div class="row">
+					<div class="col-sm-3 pt-2 text-center">
+
+
+								<svg version="1.1" fill="#fba342" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 122.88 122.88" style="enable-background:new 0 0 122.88 122.88" xml:space="preserve"><style type="text/css">.st0{fill-rule:evenodd;clip-rule:evenodd;}</style><g><path class="st0" d="M28.7,122.88h11.03v-13.4H28.7V122.88L28.7,122.88z M22.67,19.51h74.76c2.56,0,4.66,2.09,4.66,4.66v75.01 c0,2.56-2.1,4.66-4.66,4.66l-74.76,0c-2.56,0-4.66-2.1-4.66-4.66V24.16C18.01,21.6,20.1,19.51,22.67,19.51L22.67,19.51L22.67,19.51 z M42.35,41.29h35.38c1.55,0,2.81,1.27,2.81,2.81v35.12c0,1.55-1.27,2.81-2.81,2.81H42.35c-1.55,0-2.81-1.27-2.81-2.81V44.1 C39.54,42.56,40.8,41.29,42.35,41.29L42.35,41.29z M122.88,65.62v9.16h-13.4v-9.16H122.88L122.88,65.62z M122.88,48.1v9.16l-13.4,0 V48.1L122.88,48.1L122.88,48.1L122.88,48.1z M122.88,83.15v11.03h-13.4V83.15H122.88L122.88,83.15z M122.88,28.7v11.03h-13.4V28.7 H122.88L122.88,28.7z M0,65.62v9.16h13.4v-9.16H0L0,65.62z M0,48.1v9.16l13.4,0V48.1L0,48.1L0,48.1z M0,83.15v11.03h13.4V83.15H0 L0,83.15z M0,28.7v11.03h13.4V28.7H0L0,28.7z M65.62,0h9.16v13.4h-9.16V0L65.62,0L65.62,0z M48.1,0h9.16v13.4H48.1V0L48.1,0L48.1,0 z M83.15,0h11.03v13.4H83.15V0L83.15,0L83.15,0z M28.7,0h11.03v13.4H28.7V0L28.7,0L28.7,0z M65.62,122.88h9.16v-13.4h-9.16V122.88 L65.62,122.88z M48.1,122.88h9.16v-13.4H48.1V122.88L48.1,122.88z M83.15,122.88h11.03v-13.4H83.15V122.88L83.15,122.88z"/></g></svg>
+
+					</div>
+					<div class="col-sm-9">
+					  <div class="card-body p-0 m-0">
+						<small>CPU consumed by Excavator.</small>
+						<h3 class="card-title p-0 m-0 mb-2 pb-2">CPU Load / Usage</h3>
+						<h1 class="card-text p-0 m-0"><span class="value_cpu_load">0</span>% / <span class="value_cpu_usage">0</span>%</h1>
+					  </div>
+					</div>
+				  </div>
+				</div>
+
+			</div>
+
+			<!-- Stat Card -->
+			<div class="col-lg-auto p-2">
+
+				<!-- Devices -->
+				<div class="stats-card stats_devices card mb-3 shadow-sm p-3 bg-body rounded border-0 w-100"  style="min-width:314px;">
+				  <div class="row">
+					<div class="col-sm-3 pt-2 text-center">
+
+
+								<svg version="1.1" fill="#fba342" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 115.25 122.88" style="enable-background:new 0 0 115.25 122.88" xml:space="preserve"><style type="text/css">.st0{fill-rule:evenodd;clip-rule:evenodd;}</style><g><path class="st0" d="M7.91,37.95h99.43c0.14,0,0.28,0,0.42,0.01c0.47-0.09,0.89-0.32,1.22-0.65c0.42-0.42,0.69-1.01,0.69-1.64V7.9 c0-0.64-0.26-1.22-0.69-1.64c-0.42-0.42-1.01-0.69-1.64-0.69H7.91c-0.64,0-1.22,0.26-1.64,0.69C5.85,6.68,5.58,7.26,5.58,7.9v27.77 c0,0.64,0.26,1.22,0.69,1.64c0.33,0.33,0.75,0.56,1.22,0.65C7.63,37.95,7.77,37.95,7.91,37.95L7.91,37.95z M75.97,98.85h7.66V81.52 H33.21v17.33h7.67v7.65H57.7h10.41h7.85V98.85L75.97,98.85z M92.43,81.52v17.33h7.67v7.65h15.16v8.8H100.1v7.58H75.97v-7.58h-7.85 H57.7H40.88v7.58H16.75v-7.58H0v-8.8h16.75v-7.65h7.66V81.52H7.91c-2.17,0-4.15-0.89-5.58-2.32c-1.43-1.43-2.32-3.41-2.32-5.58 V45.85c0-1.94,0.7-3.71,1.87-5.09c-1.16-1.38-1.87-3.15-1.87-5.09V7.9c0-2.18,0.89-4.15,2.32-5.58C3.76,0.89,5.74,0,7.91,0h99.43 c2.18,0,4.15,0.89,5.58,2.32c1.43,1.43,2.32,3.41,2.32,5.58v27.77c0,1.94-0.7,3.71-1.87,5.09c1.16,1.38,1.87,3.16,1.87,5.09v27.77 c0,2.17-0.89,4.15-2.32,5.58c-1.43,1.43-3.41,2.32-5.58,2.32H92.43L92.43,81.52z M15.49,14.22h5.84v15.12h-5.84V14.22L15.49,14.22z M95.77,17.15c2.56,0,4.63,2.07,4.63,4.63c0,2.56-2.07,4.63-4.63,4.63c-2.56,0-4.63-2.07-4.63-4.63 C91.14,19.23,93.21,17.15,95.77,17.15L95.77,17.15z M78.13,17.15c2.56,0,4.63,2.07,4.63,4.63c0,2.56-2.07,4.63-4.63,4.63 c-2.56,0-4.63-2.07-4.63-4.63C73.5,19.23,75.57,17.15,78.13,17.15L78.13,17.15z M47.78,14.22h5.84v15.12h-5.84V14.22L47.78,14.22z M31.63,14.22h5.84v15.12h-5.84V14.22L31.63,14.22z M15.49,52.17h5.84v15.12h-5.84V52.17L15.49,52.17z M47.78,52.17h5.84v15.12 h-5.84V52.17L47.78,52.17z M31.63,52.17h5.84v15.12h-5.84V52.17L31.63,52.17z M107.77,43.56c-0.14,0.01-0.28,0.01-0.42,0.01H7.91 c-0.14,0-0.28,0-0.42-0.01c-0.47,0.09-0.89,0.32-1.22,0.65c-0.42,0.42-0.69,1.01-0.69,1.64v27.77c0,0.64,0.26,1.22,0.69,1.64 c0.42,0.42,1.01,0.69,1.64,0.69h99.43c0.64,0,1.22-0.26,1.64-0.69c0.42-0.42,0.69-1.01,0.69-1.64V45.85c0-0.64-0.26-1.22-0.69-1.64 C108.66,43.88,108.24,43.64,107.77,43.56L107.77,43.56z M88.03,105.39c3.03,0,5.48,2.45,5.48,5.48c0,3.03-2.45,5.48-5.48,5.48 c-3.03,0-5.48-2.45-5.48-5.48C82.55,107.84,85.01,105.39,88.03,105.39L88.03,105.39z M28.81,105.39c3.03,0,5.48,2.45,5.48,5.48 c0,3.03-2.45,5.48-5.48,5.48s-5.48-2.45-5.48-5.48C23.33,107.84,25.79,105.39,28.81,105.39L28.81,105.39z"/></g></svg>
+
+					</div>
+					<div class="col-sm-9">
+					  <div class="card-body p-0 m-0">
+						<small>Number of devices used by Excavator.</small>
+						<h3 class="card-title p-0 m-0 mb-2 pb-2">Devices/GPUs</h3>
+						<h1 class="card-text p-0 m-0"><span class="value">0</span></h1>
+					  </div>
+					</div>
+				  </div>
+				</div>
+
+
+			</div>
+
+			<!-- Stat Card -->
+			<div class="col-lg-auto p-2">
+
+				<!-- Eff -->
+				<div class="stats-card stats_efficiency card mb-3 shadow-sm p-3 bg-body rounded border-0 w-100"  style="min-width:314px;">
+				  <div class="row">
+					<div class="col-sm-3 pt-2 text-center">
+
+
+								<svg version="1.1" fill="#fba342" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 122.88 118.8" style="enable-background:new 0 0 122.88 118.8" xml:space="preserve"><style type="text/css">.st0{fill-rule:evenodd;clip-rule:evenodd;} .st1{fill-rule:evenodd;clip-rule:evenodd;fill:#FFFFFF;}</style><g><path class="st0" d="M8.78,53.09c-2.23,6.64-2.3,14.01-0.73,21.15c2.09,9.51,7.06,18.53,13.66,24.81 c3.62,3.45,7.61,6.23,11.83,8.36c0.21-0.16,0.47-0.26,0.76-0.26h13.2l4.92-33.76c0.05-0.64,0.59-1.15,1.25-1.15h4.63 c0.6,0,1.13,0.44,1.23,1.05l5.69,33.86h10.51c0.24,0,0.49,0.07,0.7,0.22c0.15,0.1,0.27,0.23,0.36,0.37 c4.49-2.26,8.64-5.28,12.22-9.05c4.01-4.2,7.31-9.36,9.63-15.43c1.44-3.77,2.44-7.58,3.01-11.36c1.13-7.5,0.53-16.45,0.53-23.95 c-8.07-0.97-11.41-4.85-11.41-12.76v-4.47l0,0h-1.44c-1.03,0-1.87-0.83-1.87-1.86v-2.16c0-1.03,0.84-1.87,1.87-1.87h5.68V13.39 c0-1.62,1.32-2.95,2.95-2.95l0,0c1.62,0,2.94,1.32,2.94,2.95v11.43h8.66V13.39c0-1.62,1.31-2.95,2.95-2.95l0,0 c1.62,0,2.95,1.32,2.95,2.95v11.43h5.52c1.03,0,1.87,0.84,1.87,1.87v2.16c0,1.03-0.84,1.86-1.87,1.86h-1.15v4.02 c0,7.66-3.43,12.37-11.41,13.13c0,7.73,0.45,16.79-0.63,24.41c-0.63,4.39-1.76,8.8-3.42,13.15c-2.62,6.86-6.38,12.69-10.93,17.47 c-7.36,7.73-16.8,12.7-26.87,14.78c-10.05,2.07-20.73,1.27-30.64-2.52c-6.64-2.55-12.95-6.43-18.48-11.69 C9.99,96.37,4.38,86.2,2.03,75.53c-1.88-8.58-1.67-17.52,1.34-25.57l-0.04-0.09C-9.5,17.58,17.74,12.15,34.44,0 C48.18,34.06,34.14,50.35,8.78,53.09L8.78,53.09L8.78,53.09z M45.41,63.76c0.22,0.1,0.43,0.23,0.64,0.37 c0.45,0.3,0.82,0.66,1.11,1.05c0.31,0.42,0.54,0.88,0.69,1.36l0,0.02c0.14,0.49,0.2,1,0.17,1.51c-0.02,0.48-0.11,0.96-0.26,1.44 l-0.04,0.12c-0.08,0.23-0.19,0.48-0.32,0.75c-0.11,0.22-0.23,0.43-0.37,0.64l-0.03,0.05c-0.62,0.93-1.43,1.6-2.36,2.14 c-0.83,0.49-1.74,0.87-2.65,1.25l-0.54,0.22l-0.58,0.25l-20.73,9.09l-0.09,0.03c-0.28,0.1-0.54,0.14-0.77,0.15 c-0.37,0.01-0.69-0.08-0.96-0.25c-0.05-0.03-0.1-0.07-0.14-0.1l-0.14-0.12c-0.08-0.08-0.16-0.17-0.23-0.3l0,0 c-0.06-0.1-0.1-0.21-0.14-0.32l-0.03-0.11c-0.02-0.12-0.04-0.23-0.04-0.32h0l0-0.04c0.01-0.35,0.13-0.69,0.36-1.02 c0.15-0.2,0.35-0.41,0.6-0.62c0.8-0.29,17.51-13.83,19.72-15.58c0.47-0.37,0.94-0.73,1.41-1.03c0.49-0.32,0.99-0.59,1.5-0.79 l0.1-0.04c0.5-0.19,1.04-0.31,1.63-0.33c0.57-0.02,1.17,0.06,1.8,0.27C44.99,63.58,45.22,63.67,45.41,63.76L45.41,63.76z M18.62,80.95L18.62,80.95L18.62,80.95L18.62,80.95L18.62,80.95z M18.65,80.93L18.65,80.93L18.65,80.93L18.65,80.93z M18.62,80.96 L18.62,80.96L18.62,80.96L18.62,80.96z M58.99,56.26c0.84,0.35,1.59,0.85,2.21,1.47c0.62,0.62,1.13,1.38,1.48,2.22 c0.32,0.77,0.49,1.6,0.5,2.48l0.01,0.11c0,0.92-0.18,1.8-0.52,2.61c-0.34,0.83-0.85,1.59-1.47,2.21l-0.01,0.01 c-0.63,0.62-1.38,1.12-2.21,1.47c-0.81,0.33-1.68,0.52-2.6,0.52c-0.92,0-1.8-0.18-2.61-0.52c-0.84-0.35-1.59-0.85-2.21-1.47v0 c-0.63-0.63-1.13-1.38-1.47-2.21c-0.33-0.81-0.52-1.69-0.52-2.6c0-0.92,0.18-1.8,0.52-2.61c0.34-0.83,0.85-1.59,1.48-2.21l0.01,0 c0.63-0.62,1.38-1.13,2.21-1.47c0.81-0.33,1.68-0.52,2.6-0.52C57.3,55.74,58.18,55.93,58.99,56.26L58.99,56.26z M59,52.73 c-0.22,0.14-0.42,0.25-0.62,0.34c-0.49,0.23-0.99,0.37-1.49,0.41c-0.53,0.05-1.04,0-1.54-0.13l0,0l-0.01,0 c-0.49-0.13-0.96-0.35-1.39-0.63c-0.41-0.27-0.79-0.61-1.13-1l-0.03-0.04c-0.15-0.18-0.3-0.4-0.45-0.63 c-0.14-0.22-0.26-0.45-0.38-0.68l-0.02-0.05c-0.92-1.96-0.62-3.99-0.31-6.06l0-0.03c0.06-0.41,0.09-0.62,0.15-1.07l2.96-22.53 l0.02-0.11c0.07-0.29,0.16-0.54,0.27-0.73l0,0c0.18-0.31,0.41-0.53,0.66-0.67l0.07-0.03c0.14-0.07,0.27-0.11,0.39-0.14 c0.12-0.02,0.22-0.03,0.3-0.03c0.17,0,0.33,0.03,0.48,0.09c0.1,0.04,0.21,0.1,0.31,0.16c0.29,0.19,0.53,0.47,0.68,0.83v0 c0.1,0.23,0.17,0.5,0.21,0.82l0.02,0.12l0,0l3.11,24.71c0.02,0.09,0.03,0.18,0.03,0.27v0.01c0.07,0.54,0.12,1.07,0.14,1.6 c0.02,0.6-0.01,1.18-0.1,1.74l-0.01,0.05c-0.1,0.54-0.28,1.06-0.55,1.55l-0.01,0c-0.28,0.51-0.66,0.98-1.17,1.41 C59.41,52.45,59.21,52.59,59,52.73L59,52.73z M64.42,68.93c-0.01-0.25-0.01-0.49,0.01-0.71c0.04-0.55,0.18-1.05,0.38-1.51 c0.2-0.45,0.48-0.85,0.81-1.19l0.07-0.07c0.35-0.35,0.77-0.65,1.24-0.88c0.42-0.21,0.88-0.36,1.37-0.46l0.11-0.03 c0.24-0.04,0.5-0.07,0.79-0.08c0.27-0.01,0.53-0.01,0.78,0.01l0.03,0c1.11,0.09,2.1,0.48,3.03,1.03c0.85,0.5,1.62,1.11,2.39,1.73 c6.27,4.87,12.62,9.66,18.93,14.49c0.04,0.03,0.08,0.06,0.11,0.1c0.2,0.2,0.36,0.4,0.47,0.59c0.17,0.3,0.25,0.61,0.25,0.9 c0,0.1-0.01,0.21-0.04,0.33c-0.04,0.17-0.1,0.33-0.2,0.49l0,0c-0.08,0.11-0.17,0.22-0.26,0.3l-0.1,0.08 c-0.07,0.06-0.15,0.1-0.24,0.14c-0.3,0.14-0.65,0.2-1.05,0.15c-0.23-0.03-0.48-0.09-0.75-0.2c-0.07-0.02-0.14-0.05-0.21-0.09 l-23.04-9.67l0,0c-0.55-0.22-1.09-0.47-1.6-0.74c-0.53-0.29-1.03-0.6-1.46-0.97l-0.03-0.02c-0.42-0.36-0.79-0.77-1.08-1.27 c-0.29-0.49-0.51-1.04-0.63-1.67l0-0.02C64.46,69.44,64.43,69.19,64.42,68.93L64.42,68.93z"/><path class="st1" d="M9.51,44.99l0.06,0.04c13.1-15.81,17.91-16.53,21.32-35.49C25.88,20.85,11.67,30.09,9.51,44.99L9.51,44.99 L9.51,44.99z"/></g></svg>
+
+					</div>
+					<div class="col-sm-9">
+					  <div class="card-body p-0 m-0">
+						<small>Efficiency of devices used by Excavator.</small>
+						<h3 class="card-title p-0 m-0 mb-2 pb-2">Eff. (kH/J)</h3>
+						<h1 class="card-text p-0 m-0"><span class="value">0</span></h1>
+					  </div>
+					</div>
+				  </div>
+				</div>
+
+
+			</div>
+			
+			<!-- Stat Card -->
+			<div class="col-lg-auto p-2">
+
+				<!-- Eff -->
+				<div class="stats-card stats_cpkwh card mb-3 shadow-sm p-3 bg-body rounded border-0 w-100"  style="min-width:314px;">
+				  <div class="row">
+					<div class="col-sm-3 pt-2 text-center">
+
+
+								<svg version="1.1"  fill="#fba342" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 122.88 122.88" style="enable-background:new 0 0 122.88 122.88" xml:space="preserve"><g><path d="M46.14,73.88V48.96c0.15-1.91-1.1-2.53-3.12-2.46h-4.83v-6.72h10.4v-8.43h5.88v8.43h4.61v-8.43h5.88v8.53 c1.3,0.04,2.6,0.1,3.78,0.17c5.35,0.31,9.07,1.18,11.45,6.4c0.66,1.44,1.01,3,1.01,4.54c0,2.01-0.48,3.19-1.46,4.81 c-0.97,1.62-2.4,2.77-4.29,3.6c14,1.74,11.43,21.68-3.24,23.23c-1.24,0.13-4.28,0.29-7.26,0.39v8.52h-5.88v-8.41h-4.61v8.41h-5.88 v-8.41h-10.4l1.45-6.5h4.64C45.76,76.84,46.27,75.78,46.14,73.88L46.14,73.88L46.14,73.88z M61.44,0c16.97,0,32.33,6.88,43.44,18 c11.12,11.12,18,26.48,18,43.44c0,16.97-6.88,32.33-18,43.44c-11.12,11.12-26.48,18-43.44,18S29.11,116,18,104.88 C6.88,93.77,0,78.41,0,61.44C0,44.47,6.88,29.11,18,18C29.11,6.88,44.47,0,61.44,0L61.44,0z M99.91,22.97 C90.07,13.12,76.47,7.03,61.44,7.03c-15.03,0-28.63,6.09-38.47,15.94C13.12,32.81,7.03,46.41,7.03,61.44 c0,15.03,6.09,28.63,15.94,38.47c9.85,9.85,23.45,15.94,38.47,15.94c15.03,0,28.63-6.09,38.47-15.94 c9.85-9.85,15.94-23.45,15.94-38.47C115.85,46.41,109.76,32.81,99.91,22.97L99.91,22.97z M64.95,47.64v9.78 C71.95,55.73,71.49,49.45,64.95,47.64L64.95,47.64z M64.95,63.43v12.11c0.74-0.07,1.38-0.16,1.92-0.26 c7.09-1.33,8.73-9.62,0.25-11.5C66.5,63.64,65.78,63.52,64.95,63.43L64.95,63.43L64.95,63.43z M59.07,75.76V63.21h-2.41v12.55 H59.07L59.07,75.76z M59.07,57.85v-10.7h-2.41v10.7H59.07L59.07,57.85z"></path></g></svg>
+
+					</div>
+					<div class="col-sm-9">
+					  <div class="card-body p-0 m-0">
+						<small>Cost Per Kilawatt</small>
+						<h3 class="card-title p-0 m-0 mb-2 pb-2">Hour / Month / Total</h3>
+						<h1 class="card-text p-0 m-0"><span class="value_cpkwh">0.00</span> / <span class="value_cpkwhm">0.00</span> / <span class="value_total">0.00</span></h1>
+					  </div>
+					</div>
+				  </div>
+				</div>
+
+
+			</div>
+
+
+		</div>
+					
+		<div class="row">
+			<div class="col-sm-8">
+				
+                <div class="row mb-4">
+                    <div class="col-auto">
+                        <h2>Excavator Health Monitor</h2>
+                        <p>An overview allows you to quickly monitor the health and status of your rig quickly.</p>
+                    </div>
+                    <div class="col-auto">
+						<button class="btn btn-primary float-end mt-3" data-bs-toggle="modal" data-bs-target="#ocSettings" type="button"><i class="bi bi-gear"></i> OC Settings</button>
+                        <button class="btn btn-primary float-end mt-3 me-3" data-bs-toggle="modal" data-bs-target="#fanController" type="button"><i class="bi bi-hurricane"></i> Fan Controller</button>
+						<button class="btn btn-primary float-end mt-3 me-3" data-bs-toggle="modal" data-bs-target="#memoryTimings" type="button"><i class="bi bi-clock"></i> Memory Timings</button>	
+						<button class="btn btn-primary float-end mt-3 me-3" data-bs-toggle="modal" data-bs-target="#advancedOverclocking" type="button"><i class="bi bi-lightning"></i> Advanced Overclocking</button>
+						<button class="btn btn-primary float-end mt-3 me-3" data-bs-toggle="modal" data-bs-target="#easyOverclocking" type="button"><i class="bi bi-lightning-charge-fill"></i> Easy Overclocking</button>
+						<button class="btn btn-primary float-end mt-3 me-3" data-bs-toggle="modal" data-bs-target="#autoTune" type="button"><i class="bi bi-speedometer"></i> OC Auto Tune</button>
+                    </div>
+                </div>
+				
+				<div class="table-responsive">
+					<table border="0" width="100%" class="mb-3 table">
+						<thead>
+							<tr>
+								<th>GPU ID</th>
+								<th>GPU Name</th>
+								<th>Temperature<br />(&#8451;)</th>
+								<th>Utilization<br />(%)</th>
+								<th>Fan<br />(RPM)</th>
+								<th>Fan level</th>
+								<th>Fan settings</th>
+								<th>Core<br />(MHz)</th>
+								<th>Core Limit<br />(MHz)</th>
+								<th>Core Volt.<br />(mV)</th>
+								<th>Memory<br />(MHz)</th>
+								<th>
+									Selected?<br />
+									<input class="auto-tune-disable form-check-input" type="checkbox" id="all-selected" onchange="all_selected_changed()">
+									<label for="all-selected">All</label>
+								</th>
+							</tr>
+						</thead>
+						<tbody id="table-main-health">
+						</tbody>
+					</table>
+					</div>
+				
+					<div class="table-responsive">
+						<table border="0" width="100%" class="mb-3 table">
+							<thead>
+								<tr>
+									<th>GPU ID</th>
+									<th>GPU Name</th>
+									<th>Min<br />KT</th>
+									<th>Avg<br />KT</th>
+									<th>UMed<br />KT</th>
+									<th>HW<br />err</th>
+									<th>HW<br />ok</th>
+									<th>Core<br />Delta</th>
+									<th>Mem<br />Delta</th>
+									<th>Power<br />Lim (W)</th>
+									<th>TDP<br />Lim (%)</th>
+									<th>Power<br />Real (W)</th>
+									<th>Speed<br />(MH/s)</th>
+									<th>Eff. (kH/J)</th>
+								</tr>
+							</thead>
+							<tbody id="table-main-oc">
+
+
+							</tbody>
+							<tfoot>
+								<tr>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<th id="total-power">0</th>
+									<th id="total-speed">0</th>
+									<th id="total-eff">0</th>
+								</tr>
+							</tfoot>
+						</table>
+						
+					</div>
+					
+				
+				
+				
+				<div class="mb-4">
+					<h2>Running Algorithms</h2>
+					<p>List all currently running algorithms.</p>
+				</div>
+				
+				<div class="table-responsive">
+				<table border="0" width="100%" class="mb-3 table">
+					<thead>
+						<tr>
+							<th>ID</th>
+							<th>Name</th>
+							<th>Speed (Mh/s)</th>
+							<th>Uptime</th>
+							<th>Benchmark</th>
+							<th>Accepted Shares</th>
+							<th>Rejected Shares</th>
+							<th>Got Job</th>
+							<th>Recived Jobs</th>
+							<th>Job Difficulty</th>
+						</tr>
+					</thead>
+					<tbody id="table-main-algorithms">
+						
+					</tbody>
+				</table>
+				</div>
+				
+				
+			</div>
+			
+			<div class="col-sm-4">
+			
+				<div class="mb-4">
+					<h2>Overclocking Presets</h2>
+					<p>Apply overclocks quickly with overclock presets.</p>
+				</div>
+				
+				<!-- Optimize Profile -->
+				<div class="card mb-3">
+					<div class="card-header">Nicehash Optimize Profile</div>
+					<div class="card-body">
+						
+						<div class="form-group">
+							<input class="auto-tune-disable form-check-input" type="checkbox" id="opt-checkbox" onclick="opt_enable()">
+							<label for="opt-checkbox"> OPTIMIZE (select to fill in data)</label>
+							<select class="auto-tune-disable form-control" id="selected-optimize-profile" onchange="opt_change()">
+								<option id="selected-optimize-profile-0" value="0">Manual/None</option>
+								<option id="selected-optimize-profile-1" value="1">Fixed speed</option>
+							</select>
+						</div>
+						
+					</div>
+				</div>
+				
+				<!-- OC Presets -->
+				<div class="card mb-3">
+					<div class="card-header">
+						Overclocking Profiles
+					</div>
+					<div class="card-body">
+						
+						<div class="alert alert-success" id="overclock_profiles_success" style="display:none;"></div>
+						<div class="alert alert-danger" id="overclock_profiles_danger" style="display:none;"></div>
+
+						<nav>
+							<div class="nav nav-tabs" id="nav-tab" role="tablist">
+								<button class="nav-link active" id="nav-p1-tab" data-bs-toggle="tab" data-bs-target="#nav-p1" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Preset 1</button>
+								
+								<button class="nav-link" id="nav-p2-tab" data-bs-toggle="tab" data-bs-target="#nav-p2" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Preset 2</button>
+								
+								<button class="nav-link" id="nav-p3-tab" data-bs-toggle="tab" data-bs-target="#nav-p3" type="button" role="tab" aria-controls="nav-contact" aria-selected="false">Preset 3</button>
+								
+								<button class="nav-link" id="nav-p4-tab" data-bs-toggle="tab" data-bs-target="#nav-p4" type="button" role="tab" aria-controls="nav-contact" aria-selected="false">Preset 4</button>
+								
+								<button class="nav-link" id="nav-p5-tab" data-bs-toggle="tab" data-bs-target="#nav-p5" type="button" role="tab" aria-controls="nav-contact" aria-selected="false">Preset 5</button>
+							</div>
+						</nav>
+
+						<div class="tab-content" id="nav-tabContent">
+							<div class="tab-pane fade show active border border-top-0 p-2" id="nav-p1" role="tabpanel" aria-labelledby="nav-p1">
+									
+									<!-- Preset Name -->
+									<div class="form-group mb-2">
+                                        <label for="p1-preset-name">Preset Name: </label>
+                                        <input class="auto-tune-disable form-control" type="text" id="p1-preset-name" value="Preset 1" size="3" />
+                                    </div>
+									
+									<!-- Overclocking -->
+									<div class="form-group mb-2">
+                                        <label for="p1-selected-core" id="p1-core-delta-text">Core clock delta: </label>
+                                        <input class="auto-tune-disable form-control" type="text" id="p1-selected-core" value="0" size="3" />
+                                        <small id="p1-core-delta-limits">(Min:-1000 Max:+500)</small>
+										<small id="p1-core-max-limits" hidden>(Min:510 Max:1110)</small>
+                                    </div>
+                                    <div class="form-group mb-2">
+                                        <label for="p1-selected-memory">Memory clock delta: </label>
+                                        <input class="auto-tune-disable form-control" type="text" id="p1-selected-memory" value="1200" size="3" />
+                                    </div>
+                                    <div class="form-group mb-2">
+                                        <label for="p1-selected-power">Power limit (W): </label>
+                                        <input class="auto-tune-disable form-control" type="text" id="p1-selected-power" value="150" size="3" />
+                                    </div>
+                                    <div class="form-group mb-2">
+                                        <input class="auto-tune-disable form-check-input" type="checkbox" id="p1-core-uvolt2" onclick="allow_uvolt2(null)">
+                                        <label for="p1-selected-core-volt2">Unlock max core voltage (mV): </label>
+                                        <input class="auto-tune-disable form-control" type="text" id="p1-selected-core-volt2" value="" size="3" disabled />
+                                    </div>
+									
+									<!-- Fan Control -->
+									<div class="form-group mb-2">
+										<label for="p1-selected-fan-mode">Fan mode: </label>
+										<select class="auto-tune-disable form-control" id="p1-selected-fan-mode">
+											<option id="p1-selected-fan-mode-0" value="0">Default/Auto</option>
+											<option id="p1-selected-fan-mode-1" value="1">Fixed speed</option>
+											<option id="p1-selected-fan-mode-2" value="2">Target GPU Temp</option>
+											<option id="p1-selected-fan-mode-3" value="3">Target GPU&mp;VRAM/HotSpot T.</option>
+											<option id="p1-selected-fan-mode-4" value="4">Target plus decrease MCC</option>
+										</select>
+									</div>
+									
+									<div class="form-group mb-2">
+										<label for="p1-selected-fan-speed form-control">Fixed fan speed (%): </label>
+										<input class="auto-tune-disable form-control" type="text" id="p1-selected-fan-speed" value="100" size="2" />
+									</div>
+									<div class="form-group mb-2">
+										<label for="p1-selected-fan-temp-gpu">Target GPU Temp. (&#8451;): </label>
+										<input class="auto-tune-disable form-control" type="text" id="p1-selected-fan-temp-gpu" value="60" size="2" />
+									</div>
+									<div class="form-group mb-2">
+										<label for="p1-selected-fan-temp-vram">Target VRAM/HotSpot Temp. (&#8451;): </label>
+										<input class="auto-tune-disable form-control" type="text" id="p1-selected-fan-temp-vram" value="90" size="2" />
+									</div>
+									<div class="form-group mb-2">
+										<label for="p1-selected-fan-level-max">Max fan speed (%): </label>
+										<input class="auto-tune-disable form-control" type="text" id="p1-selected-fan-level-max" value="-1" size="2" />
+									</div>
+								
+									<!-- Buttons -->
+									<div class="form-group mb-2">
+										
+										<button class="btn btn-primary" type="button" onClick="preset_save(1)">
+											<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" id="p1-save-spinner" style="display: none;"></span>
+  <span class="sr-only">Save Preset</span>
+										</button>
+										
+										<button class="btn btn-primary" type="button" onClick="preset_apply(1)">
+											<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" id="p1-apply-spinner" style="display: none;"></span>
+  											<span class="sr-only">Apply Preset</span>
+										</button>
+								
+									</div>
+								
+							</div>
+							<div class="tab-pane fade  border border-top-0 p-2" id="nav-p2" role="tabpanel" aria-labelledby="nav-p2">
+								
+								<!-- Preset Name -->
+									<div class="form-group mb-2">
+                                        <label for="p2-preset-name">Preset Name: </label>
+                                        <input class="auto-tune-disable form-control" type="text" id="p2-preset-name" value="Preset 2" size="3" />
+                                    </div>
+									
+									<!-- Overclocking -->
+									<div class="form-group mb-2">
+                                        <label for="p2-selected-core" id="p2-core-delta-text">Core clock delta: </label>
+                                        <input class="auto-tune-disable form-control" type="text" id="p2-selected-core" value="0" size="3" />
+                                        <small id="p2-core-delta-limits">(Min:-1000 Max:+500)</small>
+										<small id="p2-core-max-limits" hidden>(Min:510 Max:1110)</small>
+                                    </div>
+                                    <div class="form-group mb-2">
+                                        <label for="p2-selected-memory">Memory clock delta: </label>
+                                        <input class="auto-tune-disable form-control" type="text" id="p2-selected-memory" value="1200" size="3" />
+                                    </div>
+                                    <div class="form-group mb-2">
+                                        <label for="p2-selected-power">Power limit (W): </label>
+                                        <input class="auto-tune-disable form-control" type="text" id="p2-selected-power" value="150" size="3" />
+                                    </div>
+                                    <div class="form-group mb-2">
+                                        <input class="auto-tune-disable form-check-input" type="checkbox" id="p2-core-uvolt2" onclick="allow_uvolt2(null)">
+                                        <label for="p2-selected-core-volt2">Unlock max core voltage (mV): </label>
+                                        <input class="auto-tune-disable form-control" type="text" id="p2-selected-core-volt2" value="" size="3" disabled />
+                                    </div>
+									
+									<!-- Fan Control -->
+									<div class="form-group mb-2">
+										<label for="p2-selected-fan-mode">Fan mode: </label>
+										<select class="auto-tune-disable form-control" id="p2-selected-fan-mode">
+											<option id="p2-selected-fan-mode-0" value="0">Default/Auto</option>
+											<option id="p2-selected-fan-mode-1" value="1">Fixed speed</option>
+											<option id="p2-selected-fan-mode-2" value="2">Target GPU Temp</option>
+											<option id="p2-selected-fan-mode-3" value="3">Target GPU&mp;VRAM/HotSpot T.</option>
+											<option id="p2-selected-fan-mode-4" value="4">Target plus decrease MCC</option>
+										</select>
+									</div>
+									
+									<div class="form-group mb-2">
+										<label for="p2-selected-fan-speed form-control">Fixed fan speed (%): </label>
+										<input class="auto-tune-disable form-control" type="text" id="p2-selected-fan-speed" value="100" size="2" />
+									</div>
+									<div class="form-group mb-2">
+										<label for="p2-selected-fan-temp-gpu">Target GPU Temp. (&#8451;): </label>
+										<input class="auto-tune-disable form-control" type="text" id="p2-selected-fan-temp-gpu" value="60" size="2" />
+									</div>
+									<div class="form-group mb-2">
+										<label for="p2-selected-fan-temp-vram">Target VRAM/HotSpot Temp. (&#8451;): </label>
+										<input class="auto-tune-disable form-control" type="text" id="p2-selected-fan-temp-vram" value="90" size="2" />
+									</div>
+									<div class="form-group mb-2">
+										<label for="p2-selected-fan-level-max">Max fan speed (%): </label>
+										<input class="auto-tune-disable form-control" type="text" id="p2-selected-fan-level-max" value="-1" size="2" />
+									</div>
+								
+									<!-- Buttons -->
+									<div class="form-group mb-2">
+										
+										<button class="btn btn-primary" type="button" onClick="preset_save(2)">
+											<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" id="p2-save-spinner" style="display: none;"></span>
+  <span class="sr-only">Save Preset</span>
+										</button>
+										
+										<button class="btn btn-primary" type="button" onClick="preset_apply(2)">
+											<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" id="p2-apply-spinner" style="display: none;"></span>
+  											<span class="sr-only">Apply Preset</span>
+										</button>
+								
+									</div>
+								
+							</div>
+							<div class="tab-pane fade  border border-top-0 p-2" id="nav-p3" role="tabpanel" aria-labelledby="nav-p3">
+								
+								
+								<!-- Preset Name -->
+									<div class="form-group mb-2">
+                                        <label for="p3-preset-name">Preset Name: </label>
+                                        <input class="auto-tune-disable form-control" type="text" id="p3-preset-name" value="Preset 3" size="3" />
+                                    </div>
+									
+									<!-- Overclocking -->
+									<div class="form-group mb-2">
+                                        <label for="p3-selected-core" id="p3-core-delta-text">Core clock delta: </label>
+                                        <input class="auto-tune-disable form-control" type="text" id="p3-selected-core" value="0" size="3" />
+                                        <small id="p3-core-delta-limits">(Min:-1000 Max:+500)</small>
+										<small id="p3-core-max-limits" hidden>(Min:510 Max:1110)</small>
+                                    </div>
+                                    <div class="form-group mb-2">
+                                        <label for="p3-selected-memory">Memory clock delta: </label>
+                                        <input class="auto-tune-disable form-control" type="text" id="p3-selected-memory" value="1200" size="3" />
+                                    </div>
+                                    <div class="form-group mb-2">
+                                        <label for="p3-selected-power">Power limit (W): </label>
+                                        <input class="auto-tune-disable form-control" type="text" id="p3-selected-power" value="150" size="3" />
+                                    </div>
+                                    <div class="form-group mb-2">
+                                        <input class="auto-tune-disable form-check-input" type="checkbox" id="p3-core-uvolt2" onclick="allow_uvolt2(null)">
+                                        <label for="p3-selected-core-volt2">Unlock max core voltage (mV): </label>
+                                        <input class="auto-tune-disable form-control" type="text" id="p3-selected-core-volt2" value="" size="3" disabled />
+                                    </div>
+									
+									<!-- Fan Control -->
+									<div class="form-group mb-2">
+										<label for="p3-selected-fan-mode">Fan mode: </label>
+										<select class="auto-tune-disable form-control" id="p3-selected-fan-mode">
+											<option id="p3-selected-fan-mode-0" value="0">Default/Auto</option>
+											<option id="p3-selected-fan-mode-1" value="1">Fixed speed</option>
+											<option id="p3-selected-fan-mode-2" value="2">Target GPU Temp</option>
+											<option id="p3-selected-fan-mode-3" value="3">Target GPU&mp;VRAM/HotSpot T.</option>
+											<option id="p3-selected-fan-mode-4" value="4">Target plus decrease MCC</option>
+										</select>
+									</div>
+									
+									<div class="form-group mb-2">
+										<label for="p3-selected-fan-speed form-control">Fixed fan speed (%): </label>
+										<input class="auto-tune-disable form-control" type="text" id="p3-selected-fan-speed" value="100" size="2" />
+									</div>
+									<div class="form-group mb-2">
+										<label for="p3-selected-fan-temp-gpu">Target GPU Temp. (&#8451;): </label>
+										<input class="auto-tune-disable form-control" type="text" id="p3-selected-fan-temp-gpu" value="60" size="2" />
+									</div>
+									<div class="form-group mb-2">
+										<label for="p3-selected-fan-temp-vram">Target VRAM/HotSpot Temp. (&#8451;): </label>
+										<input class="auto-tune-disable form-control" type="text" id="p3-selected-fan-temp-vram" value="90" size="2" />
+									</div>
+									<div class="form-group mb-2">
+										<label for="p3-selected-fan-level-max">Max fan speed (%): </label>
+										<input class="auto-tune-disable form-control" type="text" id="p3-selected-fan-level-max" value="-1" size="2" />
+									</div>
+								
+									<!-- Buttons -->
+									<div class="form-group mb-2">
+										
+										<button class="btn btn-primary" type="button" onClick="preset_save(3)">
+											<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" id="p3-save-spinner" style="display: none;"></span>
+  <span class="sr-only">Save Preset</span>
+										</button>
+										
+										<button class="btn btn-primary" type="button" onClick="preset_apply(3)">
+											<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" id="p3-apply-spinner" style="display: none;"></span>
+  											<span class="sr-only">Apply Preset</span>
+										</button>
+								
+									</div>
+								
+							</div>
+							<div class="tab-pane fade  border border-top-0 p-2" id="nav-p4" role="tabpanel" aria-labelledby="nav-p4">
+								
+								<!-- Preset Name -->
+									<div class="form-group mb-2">
+                                        <label for="p4-preset-name">Preset Name: </label>
+                                        <input class="auto-tune-disable form-control" type="text" id="p4-preset-name" value="Preset 4" size="3" />
+                                    </div>
+									
+									<!-- Overclocking -->
+									<div class="form-group mb-2">
+                                        <label for="p4-selected-core" id="p4-core-delta-text">Core clock delta: </label>
+                                        <input class="auto-tune-disable form-control" type="text" id="p4-selected-core" value="0" size="3" />
+                                        <small id="p4-core-delta-limits">(Min:-1000 Max:+500)</small>
+										<small id="p4-core-max-limits" hidden>(Min:510 Max:1110)</small>
+                                    </div>
+                                    <div class="form-group mb-2">
+                                        <label for="p4-selected-memory">Memory clock delta: </label>
+                                        <input class="auto-tune-disable form-control" type="text" id="p4-selected-memory" value="1200" size="3" />
+                                    </div>
+                                    <div class="form-group mb-2">
+                                        <label for="p4-selected-power">Power limit (W): </label>
+                                        <input class="auto-tune-disable form-control" type="text" id="p4-selected-power" value="150" size="3" />
+                                    </div>
+                                    <div class="form-group mb-2">
+                                        <input class="auto-tune-disable form-check-input" type="checkbox" id="p4-core-uvolt2" onclick="allow_uvolt2(null)">
+                                        <label for="p4-selected-core-volt2">Unlock max core voltage (mV): </label>
+                                        <input class="auto-tune-disable form-control" type="text" id="p4-selected-core-volt2" value="" size="3" disabled />
+                                    </div>
+									
+									<!-- Fan Control -->
+									<div class="form-group mb-2">
+										<label for="p4-selected-fan-mode">Fan mode: </label>
+										<select class="auto-tune-disable form-control" id="p4-selected-fan-mode">
+											<option id="p4-selected-fan-mode-0" value="0">Default/Auto</option>
+											<option id="p4-selected-fan-mode-1" value="1">Fixed speed</option>
+											<option id="p4-selected-fan-mode-2" value="2">Target GPU Temp</option>
+											<option id="p4-selected-fan-mode-3" value="3">Target GPU&mp;VRAM/HotSpot T.</option>
+											<option id="p4-selected-fan-mode-4" value="4">Target plus decrease MCC</option>
+										</select>
+									</div>
+									
+									<div class="form-group mb-2">
+										<label for="p4-selected-fan-speed form-control">Fixed fan speed (%): </label>
+										<input class="auto-tune-disable form-control" type="text" id="p4-selected-fan-speed" value="100" size="2" />
+									</div>
+									<div class="form-group mb-2">
+										<label for="p4-selected-fan-temp-gpu">Target GPU Temp. (&#8451;): </label>
+										<input class="auto-tune-disable form-control" type="text" id="p4-selected-fan-temp-gpu" value="60" size="2" />
+									</div>
+									<div class="form-group mb-2">
+										<label for="p4-selected-fan-temp-vram">Target VRAM/HotSpot Temp. (&#8451;): </label>
+										<input class="auto-tune-disable form-control" type="text" id="p4-selected-fan-temp-vram" value="90" size="2" />
+									</div>
+									<div class="form-group mb-2">
+										<label for="p4-selected-fan-level-max">Max fan speed (%): </label>
+										<input class="auto-tune-disable form-control" type="text" id="p4-selected-fan-level-max" value="-1" size="2" />
+									</div>
+								
+									<!-- Buttons -->
+									<div class="form-group mb-2">
+										
+										<button class="btn btn-primary" type="button" onClick="preset_save(4)">
+											<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" id="p4-save-spinner" style="display: none;"></span>
+  <span class="sr-only">Save Preset</span>
+										</button>
+										
+										<button class="btn btn-primary" type="button" onClick="preset_apply(4)">
+											<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" id="p4-apply-spinner" style="display: none;"></span>
+  											<span class="sr-only">Apply Preset</span>
+										</button>
+								
+									</div>
+								
+							</div>
+							<div class="tab-pane fade  border border-top-0 p-2" id="nav-p5" role="tabpanel" aria-labelledby="nav-p5">
+								
+								
+								<!-- Preset Name -->
+									<div class="form-group mb-2">
+                                        <label for="p5-preset-name">Preset Name: </label>
+                                        <input class="auto-tune-disable form-control" type="text" id="p5-preset-name" value="Preset 5" size="3" />
+                                    </div>
+									
+									<!-- Overclocking -->
+									<div class="form-group mb-2">
+                                        <label for="p5-selected-core" id="p5-core-delta-text">Core clock delta: </label>
+                                        <input class="auto-tune-disable form-control" type="text" id="p5-selected-core" value="0" size="3" />
+                                        <small id="p5-core-delta-limits">(Min:-1000 Max:+500)</small>
+										<small id="p5-core-max-limits" hidden>(Min:510 Max:1110)</small>
+                                    </div>
+                                    <div class="form-group mb-2">
+                                        <label for="p5-selected-memory">Memory clock delta: </label>
+                                        <input class="auto-tune-disable form-control" type="text" id="p5-selected-memory" value="1200" size="3" />
+                                    </div>
+                                    <div class="form-group mb-2">
+                                        <label for="p5-selected-power">Power limit (W): </label>
+                                        <input class="auto-tune-disable form-control" type="text" id="p5-selected-power" value="150" size="3" />
+                                    </div>
+                                    <div class="form-group mb-2">
+                                        <input class="auto-tune-disable form-check-input" type="checkbox" id="p5-core-uvolt2" onclick="allow_uvolt2(null)">
+                                        <label for="p5-selected-core-volt2">Unlock max core voltage (mV): </label>
+                                        <input class="auto-tune-disable form-control" type="text" id="p5-selected-core-volt2" value="" size="3" disabled />
+                                    </div>
+									
+									<!-- Fan Control -->
+									<div class="form-group mb-2">
+										<label for="p5-selected-fan-mode">Fan mode: </label>
+										<select class="auto-tune-disable form-control" id="p5-selected-fan-mode">
+											<option id="p5-selected-fan-mode-0" value="0">Default/Auto</option>
+											<option id="p5-selected-fan-mode-1" value="1">Fixed speed</option>
+											<option id="p5-selected-fan-mode-2" value="2">Target GPU Temp</option>
+											<option id="p5-selected-fan-mode-3" value="3">Target GPU&mp;VRAM/HotSpot T.</option>
+											<option id="p5-selected-fan-mode-4" value="4">Target plus decrease MCC</option>
+										</select>
+									</div>
+									
+									<div class="form-group mb-2">
+										<label for="p5-selected-fan-speed form-control">Fixed fan speed (%): </label>
+										<input class="auto-tune-disable form-control" type="text" id="p5-selected-fan-speed" value="100" size="2" />
+									</div>
+									<div class="form-group mb-2">
+										<label for="p5-selected-fan-temp-gpu">Target GPU Temp. (&#8451;): </label>
+										<input class="auto-tune-disable form-control" type="text" id="p5-selected-fan-temp-gpu" value="60" size="2" />
+									</div>
+									<div class="form-group mb-2">
+										<label for="p5-selected-fan-temp-vram">Target VRAM/HotSpot Temp. (&#8451;): </label>
+										<input class="auto-tune-disable form-control" type="text" id="p5-selected-fan-temp-vram" value="90" size="2" />
+									</div>
+									<div class="form-group mb-2">
+										<label for="p5-selected-fan-level-max">Max fan speed (%): </label>
+										<input class="auto-tune-disable form-control" type="text" id="p5-selected-fan-level-max" value="-1" size="2" />
+									</div>
+								
+									<!-- Buttons -->
+									<div class="form-group mb-2">
+										
+										<button class="btn btn-primary" type="button" onClick="preset_save(5)">
+											<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" id="p5-save-spinner" style="display: none;"></span>
+  <span class="sr-only">Save Preset</span>
+										</button>
+										
+										<button class="btn btn-primary" type="button" onClick="preset_apply(5)">
+											<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" id="p5-apply-spinner" style="display: none;"></span>
+  											<span class="sr-only">Apply Preset</span>
+										</button>
+								
+									</div>
+								
+								
+							</div>
+						</div>
+					
+					</div>
+				</div>				
+								
+			</div>
+		</div>
+				
+	</div>
+
+	
+<script type="text/javascript" src="octune.js"></script>
+	
+</body>
+</html>
