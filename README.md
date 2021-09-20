@@ -1,5 +1,5 @@
 <!-- ABOUT THE PROJECT -->
-## Nicehash Excavator GUI Improved
+## Nicehash Quick Miner Excavator GUI Improved
 
 This GUI replaces the old outdated GUI currently included with NiceHash Quick Miner. Follow instructions below on how to install.
 
