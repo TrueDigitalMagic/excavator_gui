@@ -15,6 +15,14 @@ What's in the box?
 ![Alt text](https://i.imgur.com/GF7hCiM.png "Dark Theme")
 ![Alt text](https://i.imgur.com/co43gOR.png "Light Theme")
 
+### Donations
+If you enjoy the new GUI please concider donating for future updates.
+
+BTC: 3QNjnj8SCGov1zrHWoBGwm9hwG2psqABBQ
+
+## Download GUI
+https://github.com/TrueDigitalMagic/excavator_gui/blob/main/octune.zip
+
 ## Built With
 
 * [Bootstrap](https://getbootstrap.com)
@@ -23,11 +31,6 @@ What's in the box?
 ## Installation
 
 Simply replace the files inside the "octune" folder located at "C:\Nicehash\". Open OCTune and enjoy.
-
-### Donations
-If you enjoy the new GUI please concider donating for future updates.
-
-BTC: 3QNjnj8SCGov1zrHWoBGwm9hwG2psqABBQ
 
 <!-- CONTRIBUTING -->
 ## Contributing
